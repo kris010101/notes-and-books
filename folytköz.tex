@@ -1,0 +1,296 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage{dsfont}
+\usepackage{bbold}
+\usepackage{tabto}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage[magyar]{babel}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{graphicx}
+\geometry{a4paper, portrait, margin=1in}
+\graphicspath{{./inkscapes/}}
+
+\begin{document}
+\begin{titlepage}
+\begin{center}
+        \vspace*{1cm}
+            
+        \Large
+        \textbf{Folytonos Közegek Mechanikája}
+
+            
+        \vspace{1.5cm}
+        \text{Tételeket készítette: Kormos Kristóf Tamás}
+            
+        \vfill
+            
+        
+        \today
+            
+    \end{center}
+
+\end{titlepage}
+\tableofcontents
+\newpage
+\section{Bevezetés}
+Fenomenologikus leírást fogunk alkalmazni, de ez nem mond ellent az atomi és egyéb működő modelleinknek, csupán egy másik, megfigyelésalapú, általános tulajdonságokat megállapító irínyból közelíti meg. 
+A folytonos közeg olyan fizikai struktúra amely elhanyagolható határokon belül folytonosnak, nem pedig oszthatatlan részekből állónak tekinthető. Három halmazállapotot különböztetünk meg, szilárd, folyékony és gáz, amelyekből az első kettőt gyűjtőnevén kondenzált anyagnak, második kettőt együtt fluidnak nevezünk. Természetesen ha a sokrészecske rendszerként tekintünk erre az objektumra, úgy is magyarázható, de egyszerűbb úgymond "felülről" megközelíteni a problémát. 
+\section{szilárd testek rugalmas alakváltozása}
+A fémszál és damil nyúlási kísérleteiből levonható aza következtetés, hogy egy bizonyos stressz alatt az erővel a megnyulás mértéke lineárisan korrelál, ebből a követlező törvény inferálható:
+\begin{align*}
+\frac{\Delta l}{l} \cdot E = \frac{F}{A} 
+\end{align*}
+Itt kettő különböző mennyisgéet definiáltunk, az egyik a baloldali $\frac{\Delta l }{l }$, ami a deformáció, mértékegysége nincs és $\varepsilon$-nal jelöljük. A másik, a jobboldali $F/A$, amely a mechanikai feszültség $\sigma$, mértékegysége Pascal, de nem nyomás. Az E pedig egy állandó, mértékegysége szintúgy $\mathrm{Pa}$, ezt hívják Young-modulusnak. Ebből felírható a Hooke törvény egydimenziós alakja:
+\begin{align*}
+\sigma = E \varepsilon \\
+\end{align*}
+Ahol: 
+\begin{align*}
+\sigma = \frac{F}{A}, \varepsilon = \frac{\Delta l}{l}, E
+\end{align*}
+Természetesen ez a lineáris függés a $\sigma$ és $\varepsilon$ között nem áll fent határtalanul, egy bizonyos ponton túl minden $\sigma$ egységnyi változásra növekszik a meggynúlás mértéke, azaz maradandó (plasztikus, irreverzibilis) alakváltozás lép életbe, itt ha eltávolítjuk a feszültséget, nem tér vissza az eredeti hosszra. Ennek a határa $\sigma_f$ folyásfeszültség. A deformáció például fémek esetébe átlagosan olyan egy ezrelék környéke, nem nagy a ddeformáció, tehát a négszetes és magasabb rendű tagok általában elhanyagolhatóak.\\
+A horgászdamil esetében egy másik jelenség figyelhető meg: egy ideig lineáris a függés, majd feszültség változtatása nélkül is nő a deformáció, ezt nevezik kúszásnak. Ilyen kor $\dot{epsilon} \tilde \sigma$, azaz folyadékként viselkedik a damil.
+\section{Egyszerű rugalmas deformációk}
+egytengelyű nyújtás, amire érvényes a Hooke-törvénny, és harántösszehúzódás.
+Ezt lehet jellemezni a Poisson-számmal($\nu$). Ha d a keresztmetszet és l  a hossz: 
+\begin{align*}
+\frac{\Delta d}{d} = - \nu \frac{\Delta l}{l}
+\end{align*}
+Térfoggatválztozás (a deltás tagok négyzetes és keresztes tagjai elhanyagolhatóan kicsik kis megynújtásnál):
+\begin{align*}
+V&=ld^2 \\
+V+\Delta V &= (l+\Delta l)(d+ \Delta d)^2 \\
+V+\Delta V &= V(1+\frac{\Delta l}{l } + \frac{\Delta d}{ d}) \\
+&= V(1+\varepsilon -2 \nu ) \\
+\frac{\Delta V}{V} &= (1-2\nu) \frac{\sigma}{E}
+\end{align*}
+Térfogati összenyomás, ahol kompressziómodulus van, ami $K = \frac{1}{\kappa}$ : 
+\begin{align*}
+\frac{\Delta V}{V} &= -\kappa p \\
+\frac{\Delta V}{V} &= 3(1-2\nu) \frac{\sigma}{E}\\
+\kappa &= \frac{3(1-2\nu)}{E}
+\end{align*}
+Nyírás, ahol a nyírási deformáció mértékét egy szöggel adjuk mkeg, tau a nyírási feszültség:
+\begin{align*}
+\frac{\Delta x}{l} = \gamma \approx \frac{F}{A} = \tau 
+\end{align*}
+Tehát ebből a nyírási modulust bevezetve:
+\begin{align*}
+\tau = \mu \gamma
+\end{align*}
+\newpage
+\section{Deformációs tér leírása}
+Ha van egy testünk amelynek minden pontjához lehet rendelni egy r vektort, akkor ezt azv állapotot nevezzük referenciaállapotnak. Ha ezt az állapotot deformáljuk, eljutunk a deformált állapothoz, amelyekót egy $\vec{u}(\vec{r},t)$ elmozdulástér-függvénnyel írhatunk le. Ha egy másik vektort amely delta-r-rel van elmozulva, szeretnénk a deformált állapotban leírni akkor azt a következőképpen tudjuk:
+\begin{align*}
+\vec{u}(\vec{r}) + \Delta \vec{r}' &= \Delta \vec{r} + \vec{u} (\vec{r} + \Delta \vec{r})\\
+\Delta \vec{r}' &= \Delta \vec{r} + \vec{u} (\vec{r} + \Delta \vec{r}) - \vec{u}(\vec{r})
+\end{align*}
+Kis matematikai kitérés:
+\begin{align*}
+\Phi(\vec{r} + \Delta \vec{r})-\Phi(\vec{r}) \approx \nabla \Phi \cdot \Delta r
+\end{align*}
+ezt alkalmazhatjuk a fentebbi helyvektorainkra is:
+\begin{align*}
+u_i(\vec{r}+\Delta\vec{r})-u_i(\vec{r}) \approx \nabla u_i \cdot \Delta r
+\end{align*}
+Tehát:
+\begin{align*}
+\begin{pmatrix}
+\frac{\partial u_1}{\partial x} & \frac{\partial u_1}{\partial y} & \frac{\partial u_1}{\partial z} \\
+\frac{\partial u_2}{\partial x} & \frac{\partial u_2}{\partial y} & \frac{\partial u_2}{\partial z}\\ 
+\frac{\partial u_3}{\partial x} & \frac{\partial u_3}{\partial y} & \frac{\partial u_3}{\partial z}
+\end{pmatrix}
+\begin{pmatrix}
+\Delta x \\\Delta y \\ \Delta z
+\end{pmatrix}
+\end{align*}
+Ezt a mátrixot lehet elnevezni $\hat{\beta}$ disztorzió tenzornak.
+\begin{align*}
+\hat{\beta} = \begin{pmatrix}
+\frac{\partial u_1}{\partial x} & \frac{\partial u_1}{\partial y} & \frac{\partial u_1}{\partial z} \\
+\frac{\partial u_2}{\partial x} & \frac{\partial u_2}{\partial y} & \frac{\partial u_2}{\partial z}\\ 
+\frac{\partial u_3}{\partial x} & \frac{\partial u_3}{\partial y} & \frac{\partial u_3}{\partial z}
+\end{pmatrix} \Rightarrow \hat{\beta}_{ij} = \frac{\partial u_i}{\partial r_j}
+\end{align*}
+És így felírhatjuk az elmozdulásvektort a disztorziótenzorral:
+\begin{align*}
+\Delta \vec{r}' = \Delta \vec{r} + \hat{\beta} \cdot \Delta\vec{r} = (\hat{I} + \hat{\beta})\Delta \vec{r}
+\end{align*}
+De ez a tenzor még tartalmazza a forgatásokat és eltolásokat is mint elemek, ami nekünk nem kell ugyanis minket csak a deformáció érdekel. Szét lehet szedni antiszimmetrikus és szimmetrikus részre, az antiszimmetrikus rész mindig egy forgatásnak felel meg, mert fel lehet írni vektoriális szorzásműveletként. tehát a $\hat{\Omega} = \frac{\hat{\beta}-\hat{\tilde{\beta}}}{2}$ az az antiszimmetrikus  rész, ami minket nem érdekel, és a szimmetrkus rész az az $\hat{\varepsilon}$ deformáció tenzor:
+\begin{align*}
+\hat{\varepsilon} = \frac{\hat{\beta} + \tilde{\hat{\beta}}}{2}
+\end{align*}
+A relatyv megynúlás pedig:
+\begin{align*}
+\frac{|\Delta\vec{r}'|-|\Delta\vec{r}|}{|\Delta\vec{r}|} = \vec{n} \hat{\varepsilon} \vec{n}
+\end{align*}
+Relatív térfogatváltozás:
+\begin{align*}
+\vec{r}' = \hat{A} \vec{r} \Rightarrow \Delta V' = \det \hat{A} \cdot \Delta V
+\Delta V' = (\hat{I} + \hat{\varepsilon})\Delta V
+\end{align*}
+A determinánsa a teljes térfogatváltozást előidéző tenzornak:
+\begin{align*}
+\det( \hat{I} + \hat{\beta}) = \begin{vmatrix}
+1+\beta_{11} & \beta_{12} & \beta_{13} \\
+\beta_{21} & 1+\beta_{22} & \beta_{23} \\
+\beta_{31} & \beta_{32} & 1+\beta_{33} \\
+\end{vmatrix} = \beta_{11} + \beta_{22} + \beta_{33} + \dots
+\end{align*}
+A másodfokúnál magassabb fokú tagok elhanyagolhatóak, tehát a nyom lesz a determináns kis deformációkra.
+\newpage
+\section{Deformálható testek dimaikája}
+A záltalános egyenlete a tömegközéppontnak működik itt is tehát $F_k = M \cdot a_{TKP}$.  Vannak külső és belső erők, a külső erők mondjuk a gravitációs, elektormos, mágneses erők,a belsők pedig a molekulák és atomok között kölcsönható erők. Ezek nagy közelítéssel rövid hatótávúak,csak felületi erőkként lépnek fel, de nem feltétlenül merőlegesek a felszínre és az erő nagysága egyenesen arányos a felülettel, adott kis felületekre. Ekkor:
+\begin{align*}
+\Delta \vec{F} = \hat{\sigma}  \Delta \vec{A} 
+\end{align*} 
+Ahol a $\hat{\sigma}$ a feszültségtenzor, ami jellemzi a belső erőket. 
+Itt ebben a tenzorban a $\sigma_11, \sigma_22$ és $\sigma_33$ komponens a nyújtás-összenyomást adja meg az x, y és z irányokba, míg a többi komponens az irányokba való nyrást. Tehát:
+\begin{align*}
+d\vec{F} = \hat{\sigma} d\vec{A}
+\end{align*}
+A külső erők egváltozása arányos a térfogatváltozással, tehát $\Delta\vec{F} \tilde \Delta V$, amit ki lehet fejezni egzaktul a térfogati erősűtűség vektrofüggvény segítségével: $d\vec{F}_k = \vec{f} dV $. Az összes külső erőt pedig fel lehet írni az ezen térfogati erősűrűség térfogati integrálja és a feszültségtenzor felületi integráljának összegeként:
+\begin{align*}
+\vec{F}_k = \int_{V'} \vec{f} dV + \oint_{\partial V'} \hat{\sigma} d\vec{A} 
+\end{align*}
+ezek mellet tudjuk, hogy a teljes tömeg az a teljes testre vett térfogati itegrálja a sűrűségeloszlásfüggvénynek:
+\begin{align*}
+M = \oint_{V'} \rho dV
+\end{align*}
+De a deformáció során a test határai változnak, ezért az összes integrálást az eredeeti koordináták szerint és az elmozduástér függvény segítségével kell leírni. Továbbá a test tömege mindenképpen állandó, ezért lehet az integrálásokat a referenciaállapotban elvégeni, mert adott térrészben a deformáció után biztosan azonos mennyiégű tömeg van. $\vec{r}_{TKP} = \frac{\sum_i m_i r_i}{\sum_i m_i}$, ebből $M\vec{r}_{TKP} = \sum_i m_i r_i$ és így:
+\begin{align*}
+M\vec{r}_{TKP} = \int_{V'} \rho(\vec{r}) \cdot \vec{R} dV
+\end{align*}
+Ahol $\vec{R} = \vec{r} +  \vec{u}$ és u is függ az r-től. Tehát ebből ki lehet fejezni newton második törvénéyt pontrendszerre a szokásos módon:
+\begin{align*}
+M\vec{a} &= \frac{\partial^2}{\partial t^2} \int_{V'} \rho(\vec{r}) (\vec{r}+\vec{z}(\vec{r}, t)) dV \\
+M \vec{a} &= \int_{V'} \rho(\vec{r}) \ddot{u}(\vec{r}) dV 
+\end{align*}
+De a teljes erőre már van egy kifejezésünk, amit egyenlővé tehetünk az fentebbivel:
+\begin{align*}
+\int_{V'} \vec{f} dV + \oint_{\partial V'} \hat{sigma} d\vec{A} = \int_{V'} \rho(\vec{r}) \ddot{u}(\vec{r}) dV 
+\end{align*}
+Ebben van még felületi integrálunk, de ezt a Gauss-Osztrogradskij tétel segítségével át tudunk alakítani térfogati integrállá:
+\begin{align*}
+\int_{V'} \vec{f} dV + \int_{V'} \mathrm{div} \hat{\sigma} dV = \int_{V'} \rho(\vec{r}) \ddot{u}(\vec{r}) dV 
+\end{align*}
+Már csak egy tenzor divergenciáját kell értelmeznünk, de ezt megtehetjük, ha felismerjük, hogy egy tenzor hattatva a $d\vec{A}$ vektorra, három különböző egyenéetet fog adni, egyet amikor az első sorral van összeszorozva, egyet amikor  a másodikkal és egyet amikor a harmadikkal, tehát indexesen:
+\begin{align*}
+\int_{V'} f_i dV + \int_{V'} \partial_i \sigma_{ij} dV &= \int_{V'} \rho \ddot{u} dV \\
+\mathrm{div}(\hat{\sigma}) \equiv \partial_i \sigma_{ij}
+\end{align*}
+Ez pedig ha tetszőleges térfogatra igaz, akkor az integrandusok megegyeznek, tehát:
+\begin{align*}
+f_i + \partial_i \sigma_{ij} = \rho \ddot{u}_i \\
+\vec{f} + \mathrm{div} (\hat{\sigma}) = \rho \ddot{u}
+\end{align*}
+Ezt pedig \textbf{kontinuum mozgásegyenetnek} nevezzük. Szimmetrikus-e a feszültségtenzor? Tudjuk az alábbiakat:
+\begin{align*}
+\vec{F} &= \dot{\vec{p}} \\
+\vec{M} &= \dot{\vec{N}} \\
+\vec{N} &= \sum_i \vec{N}_i \\
+\vec{N}_i &= \vec{r}_i \times \vec{p}_i
+\end{align*}
+Ebből, ha beírjuk a megfelelő mennyiségekez:
+\begin{align*}
+\dot{\vec{N}} &= \frac{ \partial}{\partial t} \int_{V'} \rho(\vec{r}) (\vec{r} + \vec{u}(r,t)) \times \dot{u} dV 
+\end{align*}
+mivel az u vektorok deriváltának önmagával vett skalárszpprzata nulla, ezért kapjuk a következőt:
+\begin{align*}
+\dot{\vec{N}} &= \int_{V'} \rho \cdot \vec{R} \times \ddot{\vec{u}} dV
+\end{align*}
+Továbbá a már megkapott kifejezésünket meg lehet előről szorozni a helyvektorral, hogy megkapjuk a forgatónyomatékunkat:
+\begin{align*}
+\vec{M} &= \int_{V'} (\vec{R} \times \vec{f}) dv + \oint_{\partial V'} \vec{R} \times \hat{\sigma} d\vec{A}
+\end{align*}
+Ezt indexesen ki lehet írni: 
+\begin{align*}
+M_i &= \int_{V'} \epsilon_{ijk} R_j f_k dV + \boxed{\oint_{\partial V'} \epsilon_{ijk} R_j \sigma_kl dA_l} = \int_{V'} \rho \epsilon_{ijk} R_j \ddot{u}_k dV
+\end{align*}
+Ahol a bekeretezett kifejezés a Gauss-tételt alkalmazva:
+\begin{align*}
+\int_{V'} \epsilon_{ijk} \partial_l (R_j \sigma_{kl}) dV
+\end{align*}
+Tehát egészében:
+\begin{align*}
+\int_{V'} \epsilon_{ijk} R_j f_k dV + \int_{V'} \epsilon_{ijk}(\delta_{jl} + \partial_l u_j)\cdot \sigma_{kl} dV &= \int_{V'} \rho \epsilon_{ijk} R_j \ddot{u} _k dV 
+\end{align*}
+De tudjuk, hogy: 
+\begin{align*}
+f_k +  \partial_l \sigma_{kl} =\rho \ddot{u}_k
+\end{align*}
+Tehát a jobboldalba ha behelyettesítjük és kifejtjük, akkor az első tag kiejti a baloldali első tagot, a második tag pedig a baloldali második tag első tagját, amint feloldjuk az integrált, íg yazt kapjuk:
+\begin{align*}
+\int_{V'} \epsilon_{ijk} (\delta_{jl} + \partial_{l}u_j)\sigma_{kl} dV =0
+\end{align*}
+De mivel ez minden térfogatra igaz, és a zárójel második tagja a disztorziótenzor, ami jelen esetben nagyon kicsi, ezért:
+\begin{align*}
+\epsilon_{ijk}\sigma_{kl} = 0
+\end{align*}
+De ha ez a konstrukció nulla, akkor ha a szummát elvégezzük, akkor az ellentétes előjellel beszorzott tagok elvileg ki kell hogy ejtsék egymást, azaz a tenzor szimmetrikus. \\
+Általánosított Hooke-törvény:
+\begin{align*}
+\sigma_ij = C_{ijkl}\varepsilon_{kl}
+\end{align*}
+\subsection{Csavarás}
+Ha elcsavarunk mondjuk egy hengert, akkor kis csavarásoknál nyírásként fel lehet fogni a deformációt. Ilyekor igaz lesz, hogy $\gamma = \frac{\alpha r}{L}$, ahol alfa az elcsavarási szög. Továbbá tudjuk, hogy $\tau = \mu / gamma$, és tudjuk, hogy $dF = \tau dA$, ezekből pedig:
+\begin{align*}
+dF = \tau dA = \mu \frac{\alpha r}{L} d\varphi dr \cdot r
+\end{align*}
+Amivel pedig a forgatónyomatékot is ki tudjuk fejezni, mert tudjuk az erőt.
+\begin{align*}
+dM = r \cdot dF = \frac{\mu \alpha r^3}{L }d\varphi dr
+\end{align*}
+Ezt pedig integrálhatjuk:
+\begin{align*}
+M=\int_0^R dr \int_0^{2\pi} d\varphi r \cdot dF = \frac{\mu \alpha r^3}{L }d\varphi dr = 2\pi \frac{\mu R^4}{4L} \alpha = D^* \alpha
+\end{align*}
+\newpage
+ide is
+asdasdas
+adfs
+\newpage
+\subsubsection{Kis kiegészítés}
+Kell még egy kis kiegészítés a lineáris rugalmasságtanhoz, ha a mozgásegyenletet és a torziótenzor definícióját összeházasítjuk, azaz:
+\begin{align*}
+\varrho \underline{\ddot{u}} &= \mathrm{div} \hat{\sigma} + \underline{f} \\
+\sigma_{ij} &= 2\mu \varepsilon_{ij} + \lambda \delta{ij} \epsilon_{ll} \\
+\varepsilon_{ij} &= \left( \frac{\partial u_i}{\partial r_j} + \frac{\partial u_j}{\partial r_i}\right) \\ 
+\sigma_{ij} &= \mu \left( \frac{\partial u_i}{\partial r_j} + \frac{\partial u_j}{\partial r_i}\right) + \lambda \delta_{ij} \frac{\partial u_l}{\partial r_l} 
+\end{align*}
+Ahol az utolsó tagban a derivált az tulajdonképpen a divergenciája $u$-nak, ami egyben kis (lineáris közelítésben) a relatív térfogatváltozás. Most számoljuk ki a feszültségtenzor divergenciáját, mert ez kell a mozgásegyenletbe
+\begin{align*}
+\frac{\partial}{\partial r_i}\sigma_{ij} = \frac{\partial}{\partial r_i} \left[ \mu \left( \frac{\partial u_i}{\partial r_j} + \frac{\partial u_j}{\partial r_i}\right)  \right] + \lambda \frac{\partial}{\partial r_i} \frac{\partial u_l}{\partial r_l}
+\end{align*}
+A deriválások és indexek összeejtésével pedig a zárójel második tagja a deriválttal összeejtve a Laplace operátort eredményezi, a másik tag pedig az együtthatótól eltekintve azonos az utolsó taggal, tehát ki lehet emelni:
+\begin{align*}
+\varrho \ddot{\underline{u}} &= \mu \frac{\partial}{\partial r_i}\frac{\partial}{\partial r_i} u_j + \mu \frac{\partial}{\partial r_j}\frac{\partial u_i}{\partial r_i} + \lambda \frac{\partial}{\partial r_i}\frac{\partial u_l}{\partial r_l } \\
+&= \mu \underline{\nabla}^2 u_j + (\mu+\lambda) \frac{\partial}{\partial r_j}\frac{\partial u_i}{\partial r_i} \\
+&= \mu \underline{\nabla}^2 u_j + (\mu+\lambda) \frac{\partial}{\partial r_j}\mathrm{div}(\underline{u})
+\end{align*}
+Ennek egyébként a megoldása két fajta hullámzás, a transzverzális és longituinális hullámok.
+De egy anyagnak a felszínének vannak egyéb tulajdonságai:
+\section{Felületi feszültség}
+Ha egy felületen ki van feszítve egy valamilyen réteg (mondjuk szappanhártya), akkor bizonyos erőt kell kifejteni, hogy az ne húzza össze a mozgatható keretet. Ez arányos a szappanhártya oldalhosszával, amit húzunk. Ez az összefüggés $F=2\alpha l$, amiben az alfa a felületi feszültségi együttható, azért kell a kettessel definiálni, mert két felülete van. Ha energia szempontból közelítjük a kérdést egyértelművé válik a kettes szorzó. Ha a megynújtáshoz kellő energoiát akarjuk definiálni:$\Delta E = \alpha \Delta A$, azaz a táguáshoz kellő energia felületre való jutása álllandó, és az állandó értéke alfa. Egy szappanbuborék, ha va nyílás, azon kifújja magából a levegőt, de miért?\\
+Ha egy felszínt (tömör anyag felszínét, azaz nem kell kettes szorzó az alfához) képzelünk el, ami görbült, akkor a felszínt határoló hosszak $\Delta s_1$ és $\Delta s_2$, leírják a kis felszínt. Ha oldalnézetből tekintünk rá, a szimmetria miatt nem lesz vízszintes komponense a felületi feszültségi erőnek, csak függőleges, amit pedig egy $\Delta \varphi$ kis elfordulásssal ki is tudunk számítani. Ha a második oldalra ható erő $F_2 = \alpha \Delta s_2$, a függőleges komponense pedig: $F_{f} = F_2 \cdot \cos(90-\Delta\varphi/2) = F_2 \sin \frac{\Delta \varphi}{2} \approx F_2 \frac{\Delta \varphi}{2}$, amiből a kettes erőnek a függőleges komponense, az ezen omponens kétszerese $=2\alpha S_2 \Delta \varphi/2$ és ebből, mivel a szögelfordulás az a hossz osztva a görbületi sugárral, 
+\begin{align*}
+F_2^{f} = \alpha \frac{\Delta s_1 \Delta s_2}{R_1}
+\end{align*}
+Tehát a teljes felületre ható erő, az az egyim oldali erő összeadva a másik oldalival, ami a két görbületi sugárban különbözik csak, továbbá a $\Delta s_1 \cdot \Delta s_2 = \Delta A$ jelölést bevezetjül. Így:
+\begin{align*}
+\Delta F = \alpha \left( \frac{1}{R_1} + \frac{1}{R_2}\right) \Delta A
+\end{align*}
+Itt már csak annnyi a dolgunk, hogy leosszunk a felülettel és megkapjuk a Görbületi nyomás mennyiséget:
+\begin{align*}
+P_g = \alpha \left( \frac{1}{R_1} + \frac{1}{R_2}\right)
+\end{align*}
+\newpage
+
+
+
+
+
+\end{document}

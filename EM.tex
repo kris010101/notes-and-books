@@ -1,0 +1,1892 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage{dsfont}
+\usepackage{bbold}
+\usepackage{tabto}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage[magyar]{babel}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{graphicx}
+\geometry{a4paper, portrait, margin=1in}
+\graphicspath{{./inkscapes/}}
+
+\begin{document}
+\setcounter{tocdepth}{2} 
+\begin{titlepage}
+\begin{center}
+        \vspace*{1cm}
+            
+        \Large
+        \textbf{Kidolgozott Elektromágnesség Emelt Tételek}
+
+            
+        \vspace{1.5cm} \\
+        \text{Tételeket készítette: Kormos Kristóf Tamás}
+            
+        \vfill
+            
+        
+        \today
+            
+    \end{center}
+
+\end{titlepage}
+\tableofcontents
+\newpage
+\section*{Elnevezések}
+\begin{itemize}
+\item $q$ vagy $Q$ - elektromos töltés, $[q]=C$
+\item $\vec{r}$ - tér tetszőleges pontjába mutató vektor
+\item $\varepsilon_0$ - a szabad tér (vákuum) permittivitása $\varepsilon_0 = 8.85 \cdot 10^{-12}\frac{s^4 A}{m^3 kg}$
+\item $\varepsilon_r$ - egy adott dielektrikum relatív permittivitása
+\item $\vec{E}$ - Elektromos térerősségvektor $[E] = \frac{N}{C} = \frac{V}{m}$
+\item $\rho$ vagy $\varrho$ - térfogati töltéssűrűség $[\varrho] = \frac{C}{m^3}$
+\item $\sigma$ - felületi térfogatsűrűség $[\sigma] = \frac{C}{m^2}$
+\item $\eta$ - vonalmenti térfogatsűrűség $[\eta] = \frac{C}{m}$
+\item $U$ - elektromos potenciál, avagy feszültség (elektromos potenciálkülönbség) $[U] = V$
+\item $\vec{p}$ - dipólusmomentum $[p] = Cm$
+\item $R$ - ellenállás $[R]=Ohm=\Omega$
+\item $I$ - elektromos áramerősség $[I] = A$
+\item $\vec{j}$ - elektromos áramsűrűség $[j] = \frac{A}{m^2}$
+\item $C$ - kapacitás $[C] = F$
+\item $e$ - elemi töltés $e=1.6\cdot 10^{-19} C$
+\item $k_{B}$ - Boltzmann-állandó $k_{B} = 1.38 \cdot 10^{-23} \frac{J}{K}$
+\item $\vec{P}$ - polarizációvektor $[P] = \frac{C}{m^2}$
+\item $\vec{D}$ - elektromos eltolásvektor $[D] = \frac{C}{m^2}$
+\item $\beta$ - erősítési tényező
+\item $\vec{B}$ - Mágneses indukcióvektor $[B] = Tesla = T = \frac{kg}{s^2 A}$
+\item $\vec{H}$ - Mágneses térerősségvektor $[H]=\frac{A}{m}$
+\end{itemize}
+\newpage
+\section{Elektrosztatika I.}
+\subsection{Bevezetés}
+DU Fay 1730-ban felfedezi a két elektromos állapotot
+
+Ben Franklin 1750-ben a töltéseket elnevezi pozitívnak és negatívnak.
+Anyagok csoportja: szigetelők és vezetők, rájöttek, hogy van, amit fel lehet tölteni dörzsöléssel és van amit nem, amit nem azt pedig csak azért nem, mert a tárgy megfogása leföldeli $\Rightarrow$ vezető.
+
+Elektromos megosztás: bizonyos hatásra különválnak a pozitív és negatív töltések, majd pozitín és negatív töltések semlegesítik egymást. Ezután a kvantitatív elektrosztatika jött be.
+\subsection{Elektromos erőtér és Gauss-törvény}
+Coulomb-erő: tudjuk, hogy $\frac{1}{r^2}$-es törvény, arányos a két töltéssek (és a paritásukkal az irány), a kettő töltést összekötő helyvektor irányával és egy konstanssal.
+\begin{gather*}
+\vec{F}_{12} = \frac{1}{4 \pi \varepsilon_0} \frac{q_1 q_2}{r^2} \cdot \frac{\vec{r}}{|r|}
+\end{gather*}
+A newton-törvények működnek itt is, mind a négy, pedig nem erre számítana az emmber először. Tegyünk próbatöltéseket egy töltés közelébe és nézzük meg az erőket:
+\begin{gather*}
+F_i =  \sum_{j, j\neq i} F_{ij} = Q_i \sum_j \frac{1}{4\pi \varepsilon_0} \frac{Q_1}{|r_i-r_j|^3} \cdot (\vec{r}_i-\vec{r}_j) = Q_i E(\vec{r}_i)
+\end{gather*}
+Ponttöltés elektromos tere:
+\begin{gather*}
+\vec{E}= \frac{Q}{4\pi\varepsilon_0} \frac{1}{r^2} \frac{\vec{r}}{|r|}
+\end{gather*}
+Ez lesz a töltésre ható erő egy pontban abban az esetben, ha az a töltés nem mozog és nem tudja a kezdeti töltésemnek a töltéseloszlását megváltoztatni.
+Gömbre a töltéseket ki lehet számolni így:
+\begin{gather*}
+\oiint_{G} \vec{E} \mathrm{d\vec{A}} = \oiint |\vec{E}|\mathrm{|d\vec{A}|} = |\vec{E}(r)| \oiint \mathrm{d\vec{A}} = \frac{1}{4\pi \varepsilon_0} \frac{Q}{r^2} \cdot 4\pi r^2 = \frac{Q}{\varepsilon_0}
+\end{gather*}ű
+Ha nem Gömbre integáálunk, hanem akármilyen krumplira. $d\vec{A} = r^2 d\Omega \cdot \frac{\vec{r}}{|r|}$, ahol az $d\Omega$ térszög.
+\begin{gather*}
+\oiint \vec{E} \mathrm{d\vec{A}} = \int \mathrm{d\Omega} r^2 \frac{\vec{r}}{|r|} \cdot \frac{Q}{4\pi \varepsilon_0} \frac{\vec{r}}{|r|^3} = \frac{Q}{4\pi \varepsilon_0} \iint \mathrm{d\Omega} = \frac{Q}{\varepsilon_0}
+\end{gather*}
+Ebből levonhatjuk a következtetést, hogy egy adott töltés körül egy zárt felszínen átfolyó Eleketromos tér fluxusa kifejezhető a Gauss-törvénnyel(Maxwell I. törvénye):
+\begin{gather*}
+\oiint \vec{E} \mathrm{d\vec{A}} = \frac{Q_{bezart}}{\varepsilon_0}
+\end{gather*}
+A Gauss-törvényt ki lehet fejezni differenciális alakban a Gauss-Osztrogradskij-tétel segítségével (divergenciatétel), ha $\rho$ egy bizonyos töltéssűrűség:
+\begin{gather*}
+\oiint \vec{E} \mathrm{d\vec{A}} = \iiint \mathrm{div}( \vec{E}) \mathrm{dV} = \frac{1}{\varepsilon_0} \iiint \rho \mathrm{dV}
+\end{gather*}
+azaz, ha ez tetszőleges térfogatra igaz kell, hogy legyen, akkor az integrandusok megegyeznek:
+\begin{gather*}
+\boxed{\nabla \cdot \vec{E} = \frac{\rho}{\varepsilon_0}}
+\end{gather*}
+Csak analógiának: ezt fel lehet írni a gravitációs erőnél is: 
+\begin{gather*}
+-\nabla \cdot \vec{g} = 4\pi G \rho
+\end{gather*}
+\subsubsection{Earnshaw-tétel}
+Nincsen stabil egyensúlyi helyzet, ugyanis, ahhoz, hogy legyen, 0  kell hogy legyen a térerősségben egy pontban és befele kellene mutatnia a térerővonalaknak a környékén. Ekkor a töltés körüli kicsi térrészben a Gauss-törvény jobb oldalán a töltés 0, tehát a baloldal 0, a jobb oldal pedig egy negatív szám, de nem nulla. $a=0, a \leq 0 \Leftrightarrow a=0$, tehát ilyen nem lehet. Ezt nevezik Earnshaw-tételnek.
+A newtoni.törvények működnek, mitn az eerő ellenerő, szuperpozició elve. Már ekkorra ismert volt termszetesen. Az elektromágneses erő $10^{43}$-szor erősebbb mint a gravitáció.
+\subsection{Konzervatív tér}
+Ha van egy bizonyos elrendezésű ponttöltéshalmaz, és egy próbatöltést egy bizonyos úton körbeviszek, akkor a munkavégzésem:
+\begin{gather*}
+W = \oint \vec{F} \cdot \mathrm{d\vec{r}} = -q \oint \vec{E} \cdot \mathrm{d\vec{r}} = 0
+\end{gather*}
+Mert ha nem lenne nulla, hanem mondjuk valami pozitív szám, akkor ha körbeviszem egy körön majd mégegszer körbeviszem, akkor több lett volna a munkavégzésem mit amennyit tényleg végeztem, azaz energiát hoztam volna létre. Ha egy negatív szám lenne, akkor a másik irányba kellene végigvinnem. (a baloldal a munka definíciója, a jobboldal pedig az elektromos erő megszorozva a megtett űttal, de egy kört írtunk le). Ebből tehát:
+\begin{gather*}
+\oint \vec{E} \mathrm{d\vec{r}}= 0
+\end{gather*}
+Amelyet át lehet írni a Stokes-tétellel:
+\begin{gather*}
+\iint \mathrm{rot} (\vec{E}) \mathrm{d\vec{A}} = 0
+\end{gather*}
+És mivel ez minden lehetséges felületre igaz kell, hogy legyen, ezért az integrandus is nulla:
+\begin{gather*}
+\mathrm{rot} \vec{E} = 0
+\end{gather*}
+Avagy a nabla operátorral kifejezve (Maxwell III. differenciális alakja, ha a mágneses térerővektora zérus  - vagy időben állandó):
+\begin{gather*}
+\boxed{\nabla \times \vec{E} = 0}
+\end{gather*}
+Kiírva komponensekkel, majd indexes alakban kifejezve, csak a teljesség kedvéért:
+\begin{gather*}
+\nabla \times \vec{E} = 
+\begin{pmatrix}
+\partial_x \\ \partial_y \\ \partial_z
+\end{pmatrix} \times \begin{pmatrix}
+E_x \\ E_y \\ E_z
+\end{pmatrix} = \begin{pmatrix}
+\partial_y E_z - \partial_z E_y \\ \partial_z E_x - \partial_x E_z \\ \partial_x E_y - \partial_y E_x
+\end{pmatrix} \\
+\end{gather*}
+Továbbá indexes írásmóddal: 
+\begin{gather*}
+(\mathrm{rot} \vec{E})_i = \epsilon_{ijk} \partial_{j} E_k = 0
+\end{gather*}
+Ha erővonalakkal szeretnénk ábrázolni, akkor az erővonnalak sűrűsége a tér erősségét elenti, iránya a vektoroknak mindenhol a térerővonalra tangenciális. Folytonosak az erővonalak, mert csak akkor szakadhatnának meg, ha egy adott helyen a fluxus nulla, de az csak úgy lehetséges, ha a töltés nulla. Nem képeznek hurkot, mert beláttunk, hogy rotációmentes.
+\subsection{Elektromos potenciál}
+Egy adott $P_0$ pontból egy testet átviszünk egy A pontba majd visszahozunk egy másik pályán. Ekkor a teljes végzett munka - az előző részben beláttuk - zérus, tehát:
+\begin{gather*}
+-q \int_{P_0, I}^{A} \vec{E} \mathrm{d\vec{r}} - 	q \int_{A, II}^{P_0} \vec{E} \mathrm{d\vec{r}} = 0 \\
+-q \int_{P_0, I}^{A} \vec{E} \mathrm{d\vec{r}} = - 	q \int_{P_0, II}^{A} \vec{E} \mathrm{d\vec{r}}
+\end{gather*}
+Tehát útfüggetlen az, hogy mennyi munkát végzünk. Emiatt lehet rendelni ehhez a munka kiszámításhoz egy skalárfüggvényt, melyel lecsökkentjük a kellő változók számát 3-ról 1-re. Ezt a függvényt $U(\vec{r})$-rel jelöljük, triviálisan $U(\vec{r}_{P_0}) = 0$
+Ha A-ból B-be szeretnénk vinni egy töltést egy elektromos térben: 
+\begin{gather*}
+-\int_A^B \vec{E} d\vec{r} = -\int_A^{P_{0}} \vec{E} d\vec{r}-\int_{P_0}^{B} \vec{E} d\vec{r} = \int_{P_0}^{A} \vec{E} d\vec{r} - \int_{P_0}^{B} \vec{E} d\vec{r} = U(\vec{r}_B)-U(\vec{r}_A)
+\end{gather*}
+Véges térrészen belüli töltéseloszlásra a potenciál nullaszintjét a végtelenbe tehetjük, így egyszerű lesz vele e a számolás. Potenciálból az elektromos teret pedig az alábbi módon nyerhetjük ki:
+\begin{gather*}
+U(x_0+\Delta x) - U(x_0) = -E_x(x_0)\cdot \Delta x
+\end{gather*}
+Azaz ezt a gradiens művletével lehet leírni: 
+\begin{gather*}
+\vec{E}(x_0) = -\nabla U(x_0) = -\mathrm{grad} U(x_0) \Rightarrow E_i = -\partial_i U
+\end{gather*}
+Az állandó potenciállal rendelkező felület (ekvipotenciális) merőleges a térerősségvonalakra, mert:
+\begin{gather*}
+U(r_1+\Delta r)-U(r) = 0\\
+U(r) + \Delta r \nabla U -U(r) = 0 \\
+\Delta \vec{r} \cdot \vec{E} = 0
+\end{gather*}
+Azaz az erővonal merőleges a helyvektorra.
+\\
+Bebizonyítható, hogy az elektromos tér rotációmentes, mert:
+\begin{gather*}
+\mathrm{rot}(-\mathrm{grad} U)_i = \epsilon_{ijk} \partial_j \partial_k U = -\epsilon_{ikj} \partial_k \partial_j U = \epsilon_{ijk} \partial_j \partial_k U \\
+A=-A \Rightarrow \mathrm{rot} \vec{E}=0 
+\end{gather*}
+továbbá megnézhetjük mit  jelent az elektromos tér divergenciája:
+\begin{gather*}
+\mathrm{div} \vec{E} = \mathrm{div}(-\mathrm{grad}U) = \partial_i \partial_i U = (\partial_x^2 + \partial_y^2 + \partial_z^2) U = \nabla^2 U
+\end{gather*}
+Ahol a $\nabla^2$, vagy másik jelöléssel $\Delta$ a Laplace-operátort jelöli. Ebből pedig, mivel tudjuk mi a térerősség divergenciája, a Poisson-egyenlet jön ki:
+\begin{gather*}
+\nabla^2 U = \frac{\rho}{\varepsilon_0}
+\end{gather*}
+\subsection{Dirac delta}
+A Dirac delta egy olyan függvény amellyel kellemesen lehet modellezni például a onttöltések és pontszerű testeket, az elllentmondásokat kikerülve. A definíciója a következő:
+\begin{gather*}
+\delta(x) = \begin{cases} 
+0  x\neq 0 \\
+\infty  x=0
+\end{cases} \\
+\int_{-\infty}^{\infty} \delta(x) dx = 1
+\end{gather*}
+\subsection{Töltéselrendezések}
+Az elektromos térből rekonstruálni lehet a potenciálteret, és forítva, a Gauss-tételt és poisson-egyenletet használva pedig meg lehet modani az elektromos teret.
+\subsubsection{Egyenletesen töltött gömbhéj}
+\begin{gather*}
+\oiint \vec{E} d\vec{A} = \frac{Q_{be}}{\varepsilon_0} = 4r^2\pi\vec{E} \\
+E = \frac{1}{4\pi\varepsilon_0} \frac{Q}{r^2}
+\end{gather*}
+Továbbá a gömbön belül a felszín ugyanúgy számolható, de a töltés a vizsgált térfogaton belül 0 tehát:
+\begin{gather*}
+4r^2\pi E = \frac{Q}{\varepsilon_0} = 0
+\end{gather*}
+Honnan tudjuk, hogy a Coulomb törvény pontosan $\frac{1}{r^2}$-es függés nem pedig $\frac{1}{r^{2+\epsilon}}, \epsilon\neq 0$? Ha nem pontosan négyzetes lenne a függés, akkor a gömbhéjon belül nem lenne nulla az elektromos tér, lennének belül is töltések. Mivel ki lehet mérni ezt, tudhatjuk jelenleg $10^{-16}$ pontossággal, hogy nincs töltés. Eza tény összefüggésben van a foton tömegével is, ami azt jelenti, hogy ha nem négyzetes lenne a függés, a fotonnak tömege lenne, innen tudjuk, hogy nincs.
+\subsubsection{Egyenletesen töltött tömör gömb}
+\subsubsection{Elektromosan töltött szál}
+Egy szál, aminek a vonalmenti töltéssűrűsége $\eta$ és végtelen hosszú:
+\begin{gather*}
+\oiint \vec{E} d\vec{A} = \frac{l\eta}{\varepsilon_0}\\
+\iint \vec{E} d\vec{A} + \iint \vec{E} d\vec{A} = E 2 \pi r l \\
+|E| = \frac{1}{2\pi\varepsilon_0} \frac{\eta}{r}
+\end{gather*}
+Nem optimális a potenciál nullapontját a végtelenbe tenni, mert logaritmikus.
+\subsubsection{Sík}
+Egy végtelen síkon egy bizonyos részben egy téglalap térfogatnak a felszínére vesszük a gauss-tételt, és kihasználva a tükörszimmetriát:
+\begin{gather*}
+\oiint \vec{E} d\vec{A} = \frac{\sigma A}{\varepsilon_0} \\
+2EA=\frac{\sigma A}{\varepsilon_0} \\
+E=\frac{\sigma}{2\varepsilon_0}
+\end{gather*}
+\subsubsection{Dipólus}
+Ha van kettő töltésünk $+q$ és $-q$ $l$ távolságra egymástól, akkor egy adott pontban (a negatív töltéstől $\vec{r}$ vektorral arrébb):
+\begin{gather*}
+U(\vec{r})=\frac{1}{4\pi\varepsilon_0}\left[ \frac{-q}{|\vec{r}|} + \frac{q}{|\vec{r}-\vec{l}|}\right] \\
+\frac{1}{|r-l|}=\frac{1}{\sqrt{(\vec{r}-\vec{l})(\vec{r}-\vec{l})}}\approx\frac{1}{\sqrt{r^2-2\vec{r}\vec{l}}} = \frac{1}{r}\frac{1}{\sqrt{1-\frac{2rl}{r^2}}} \approx \frac{1}{r} \left[ 1+\frac{rl}{r^2} \right] \\
+U(\vec{r})=k\frac{\vec{p}}{r^2}\cdot \vec{n}
+\end{gather*}
+Ahol p a dipólmomentum. Az elektromos teret is ki tudjuk számítani, ha vesszük a negatyv gradiensét a potenciálnak: 
+\begin{gather*}
+\vec{E}=-\nabla U = \frac{1}{4\pi \varepsilon_0}(\nabla \vec{p}\vec{r} \frac{1}{r^2}+\vec{p}\vec{r}\nabla \frac{1}{r^3}) = \frac{1}{2\pi \varepsilon_0} \frac{3\vec{p}\vec{r}-\vec{p}r^2}{r^5}
+\end{gather*}
+Ez vizualizálva annyit jelentene, az egyenes térerővonalak a dipólmomentum irányába mutatnak.
+\subsubsection{Dipólus külső elektromos térben}
+Az eredő erő az azonos töltés miatt indig 0 lesz, de a forgatónyomaték lehet nem nulla, azaz:
+\begin{gather*}
+\vec{M} = \vec{r}_1 \times (+q\vec{E}) + \vec{r}_2 \times (-q\vec{E})
+\end{gather*}
+Ahol $\vec{r}_2 = \vec{r}_1+ \vec{l}$, tehát:
+\begin{gather*}
+\vec{M} = \vec{l} \times q\vec{E} = \vec{p} \times \vec{E}
+\end{gather*}
+Ebből a végzett munka (majd abból az energiája ennek az elrendezésnek):
+\begin{gather*}
+W=\int - (\vec{p} \times \vec{E}) d\varphi = -\int|p||E|\sin \varphi d\varphi = |p||E|\cos \varphi = \vec{p} \cdot \vec{E} 
+\end{gather*}
+Tehát a dipólmomentum és a külső elektromos térvektor skalárszorzata felel meg a dipólus energiájának.
+Inhomogén térben kiszámoljuk az erő mekkora adott pontokban $q\vec{E}(\vec{r}+\vec{l})-qE(\vec{r}) \approx \vec{p} \mathrm{grad} \vec{E}$, ebből pedig lehet munkát számolni. \\
+Ez az egész azért jó nekünk, mert olyan molekuláris elrendezésekben amik általánosságban semlegesek, még minidg tudunk elektromos kölcsönhatásrl beszélni, ugyanis ez a dipóluskölcsönhatás fogja az erőt eredményezni. Ezek mellett, ha a dipól sem érvényes, akkor:
+\begin{itemize}
+\item Vezető járulék: $\frac{1}{r}$ kölcsönhatás \\
+\item Dipól járulék: $\frac{1}{r^2}$ kölcsönhatás , 3 fajta elrendezés\\
+\item Kvadrupól járulék: $\frac{1}{r^3}$ kölcsönhatás, 5 fajta elrendezés \\
+\item Oktopól járulék: $\frac{1}{r^4}$ kölcsönhatás, 10 fajta elrendezés
+\end{itemize}
+\newpage	
+\section{Elektrosztatika II.}
+\subsubsection{Fémek:}
+szabadon elmozduló, könnyen elmozdítható töltések vannak benne
+Belül az elektromos térerősség nulla, azaz ekvipotenciálisak a fémek, a felületen helyezkednek el a töltései. $\vec{E} \perp $ 
+fémfelület. 
+\begin{gather*}
+\vec{E} \cdot \vec{A} = \frac{Q}{\varepsilon_0} = \frac{\sigma A}{\varepsilon_0} \Rightarrow E = \frac{\sigma}{\varepsilon_0}
+\end{gather*}
+, ahol a $\sigma$ a felületi töltéssűrűség. 
+\subsubsection{Faraday-kalitka}
+Fémrács, aminek a belsejében nulla az elektromos térerősség
+\subsubsection{Csúcshatás}
+Ha van egy gömb $R_1$ sugárral és $Q_1$ töltéssel, és egy kisebb gömb $R_2, Q_2$ sugárral és töltéssel, de legyen a potenciáljuk azonos, akkor:
+\begin{gather*}
+U=k\frac{Q_1}{R_1} = k\frac{Q_2}{R_2} \\
+E_1 = k\frac{Q_1}{R_1^2} = U/R_1 \\
+E_2 = k\frac{Q_2}{R_2^2} = U/R_2
+\end{gather*}
+De eből a két egyenletből, mivel a potenciál azonos, ezért:
+\begin{gather*}
+\frac{E_2}{E_1} = \frac{R_1}{R_2}
+\end{gather*}
+Azaz, mminél nagyobb a rugár annál kisebb az elektromos térerősség, így a csúcsok és egyéb kisebb pontok térerőssége nagyon nagy.
+\subsubsection{Elektromos szél}
+A csúcsokon a nagy elektromos tér az ellentétes töltéseket magához szívja majd az ellentétes töltés miatt ellöki. Szent Elmo tüze: árbóc tetején nagy elektromos tér
+\subsection{Elektrosztatikus példák vezetők jelenlétében}
+Ha egy határon belül adott a töltéseloszlás akkor megmondható az U és E
+\subsubsection{Síkra vett tükörtöltés}
+Ha egy sík fölé teszünk töltést, alatta fém vagy vákuum van és azt vizsgáljuk, akkor a sík fölött a megoldás megegyezik, alatta nem.
+\begin{gather*}
+U(\vec{r} ) = k\left(\frac{Q}{|\vec{r}-\vec{r_1}|}-\frac{Q}{|\vec{r}-\vec{r_2}|}\right)
+\end{gather*}
+\subsubsection{Gömbre vett tükörtöltés}
+ábra:
+
+Ha kirakjuk a gömbön kívülre a töltésünket, akkor belülre is kell rakni. a belső, középponttól mért távolsága $\frac{R^2}{d}$, ennek a töltésnek a külsőtől vett távolsága $d$ és ha a külső töltés $Q$, akkor a belső $-\frac{R}{Q}$
+\subsubsection{Kondenzátor}
+Olyan eszköz ami kettő darab fémmdarabból áll, mindkettőn azonos mennyiségű töltéssel. Ha gy edlrendezzük a fémdarabokat, elektromos tér lesz közöttük, ahol az eddigiekben látottak szerint lehet potenciált definiálni és így kapjuk meg a kapacitás definícióját:
+\begin{gather*}
+Q=C(U_2-U_1) \\
+\lambda Q \rightarrow \lambda \vec{E} \rightarrow \lambda(U_2-U_1)  \\
+C=\frac{Q}{U}
+\end{gather*}
+Ahol C az a kapacitás, mértékegysége Farad.
+\subsubsection{Síkkondenzátor}
+Ha két egyenes sík a két fémdarab akkor síkkondenzátorról beszélünk. A belső részen a térerősséget ki lehet számolni, ugyanis a sík elektromos terét már kiszámoltuk. Kívül nem lesz elektromos tér, azaz:
+\begin{gather*}
+\vec{E}_{belso} = 2 \cdot \frac{\sigma}{2\varepsilon_0} = \frac{\sigma}{\varepsilon_0} \\
+\vec{E}_{kivul} = 0 \\
+U = Ed = \frac{\sigma}{\varepsilon_0} d = \frac{Q}{A\varepsilon_0}d \Rightarrow C=\varepsilon_0 \frac{A}{d}
+\end{gather*}
+\subsubsection{Gömbkondenzátor}
+Kettő koncentrikus elektromosan töltött fém gömbhéjból áll, $R_1$ és $R_2$ sugarakkal. Itt segítségünkre van a már korábban megállapított végtelen vékony gömbhéj elektromos tere.
+\begin{gather*}
+C=4\pi \varepsilon_0 \cdot \frac{R_1 R_2}{R_1 + R_2}
+\end{gather*}
+\subsubsection{Kondenzátorok kapcsolása}
+Ugyan az áramkör mint olyan még nincs definiálva, de lehet a kondenzátorokat áramköri elemként sorosan és párhuzamosan kapcsolni.
+Lehet sorosan kapcsolni, ilyenkor a $\frac{Q_n}{C_n}$-k összeadódnak, azaz a reciprokok összege megegyezik az összeg reciprokával:
+\begin{gather*}
+\frac{1}{C_1} + \frac{1}{C_2} = \frac{1}{C_e}
+\end{gather*}
+Lehet párhuzamosan kapcsolni, ilyenkor a töltések összadódnak, azaz a kapacitások is:
+\begin{gather*}
+C_1+C_2=C_e
+\end{gather*}
+\subsection{Elektrosztatikus gépek}
+\subsubsection{Leideni palack}
+Szigetelővel elválasztott vezetőpalack vezetőhüvelyben, ami kondenzátorként viselkedik. Ez volt az első kondenzátorfajta. Hengerkondenzátorklnt  lehet értelmezni. 
+\subsubsection{Wimshurst gép}
+Egy tárcsát lehet forgatni, ami töltéseket cvisz fel kettő fém gömbre, ami egy bizonyos távolságra van egymástól. Amikor lesz elég töltés a gömbököt, kisül a rendszer és szikrázik. Ez azért van, mert a potenciál megnövekszik a golyók között és amikor eléri az átütési feszültségét a levegőnek, szikrázik egyet, majd töltéskiegyenlítődés lesz.
+\subsubsection{Thomson-gép}
+Egy tálból két irányba folyik le víz, amik csapokon keresztül folynak. A csapok alatt a bal oldalon mondjuk egy negatív, a jobb oldalon pozitív töltépsű hurok van. A bal oldali negatív hurok, a jobb oldali alsó tálkához van hozzákötve és fordítva. Egy kis kezdeti töltéskülönbség miatt, a pozitív töltéseket a negatív hurok fogja bevonzani, ami beleesik a pozitív tálba, ami a másik hurkot pozitívan tölti fel, ami pedig a negatív vízmolekulákat fogja vonzani, így generálva potenciálkülönbgséget. Ez egy generátor 
+\subsubsection{Van de Graaf generátor}
+Egy szalaggal és kefével elláttott forgó tengelyen csúsztatott gép, amely a fogak segítségével töltést helyez át a szalag felszínéről egy fémkupola külső felszínére.
+\subsection{Energiák}
+\subsubsection{Elektromos energia}
+\begin{gather*}
+E_n = \frac{1}{4\pi \varepsilon_0} \frac{q_1 q_2}{r} \\
+E_n = \frac{1}{4\pi \varepsilon_0} \sum_{ij} \frac{q_1 q_2}{|\vec{r}_i-\vec{r}_j|} = \frac{1}{2} \sum_{i} q_i \cdot U(\vec{r}_i)
+\end{gather*}
+\subsubsection{Kondenzátor energiája}
+egy $q, -q$ fegyverzetű kondenzátorban a töltések kiegyenlítéséhez kellő munka egyezik meg a kondenzátor energiájával, azaz
+\begin{gather*}
+\Delta W = \Delta q \cdot \frac{q}{C} \\
+W=\int_0^Q dq \frac{q}{C} = \frac{1}{2} \frac{Q^2}{C} \\
+E_n = \frac{1}{2} \frac{(\sigma A)^2}{\varepsilon_0 \frac{A}{d}} = \frac{1}{2} \varepsilon_0 (\sigma/\varepsilon_0)^2 Ad=\frac{1}{2} \varepsilon_0 E^2 V \\
+\frac{\sigma}{\varepsilon_0} = E \\
+w(E)=\frac{1}{2}\varepsilon_0 E^2
+\end{gather*}
+Ahol $w(E)$ az energiasűrűség, ami abból jött ki, hogy felírtuk a kondenzátor energiáját, majd behelyettesítettük a különböző mennyiségeket és végül a térfogatot kihoztuk az egyenletből. Azzal ha leosztunk megkapjuk a térfogatra jutó energiát, másnéven az energiasűrűséget.
+\subsubsection{Millikan kísérlet}
+olajcsepp elektromos térben való lebegtetése:
+\begin{gather*}
+F=mg-F_{fel} = \frac{4}{3} r^3\pi (\rho_{olaj}-\rho_{levego})\cdot g=6\pi\eta r v \\
+F \pm QE = 6\pi\eta r v
+\end{gather*} 
+Ebből ki lehet számolni az elektron töltését. Most hogy megvan az elektron töltése megpróbálhatjuk kiszámolni az elektronfelhő energiasűrűségéből az elektron energiáját:
+\begin{gather*}
+w=\frac{1}{2} \varepsilon_0 E^2 = \frac{1}{2} \varepsilon_0 \left( \frac{1}{4\pi \varepsilon_0} \frac{e}{r^2}\right)^2 \\
+E_n = \int_0^{\infty} w \cdot 4\pi r^2 dr \sim \int_0^{\infty} \frac{1}{r^2} dr = \left[ -\frac{1}{r}\right]_0^{\infty} \rightarrow \infty
+\end{gather*}
+Ez nem lesz így jó, az elektron energiája egyértelműen nem végtelen:( Tehát valamit elkúrtunk, de ezt nem a klasszikus elektromosságtan keretein belül fogjuk feloldani.
+\subsubsection{Plazmarezgések}
+Adott egy elektromos tér, amelyben részecskék szabadon mozoghatnak, amelyben egy réteg mozgását az u(t) elmozdulásfüggvénnyel írhatunk le, ekkor $q=A\cdot u \cdot n \cdot e$. Ebből az energia $E=q/(A\varepsilon_0)$, és a benne lévő töltésre $qE$ erő hat, tehát $eE=m\ddot{u}$. az energiát kifejezve $E=\frac{une}{\varepsilon_0}$ és behelyettesítve:
+\begin{gather*}
+-\frac{e^2 n u}{\varepsilon_0} = m\ddot{u} \Rightarrow \omega_0 = \sqrt{\frac{e^2 n}{m\varepsilon_0}}
+\end{gather*}
+Azaz rezegni fognak a töltött részecskék a plazmafrekvencián.
+Villámcsapás, este hétkor a legnagyobb a föld körüli elektromos tér ($\sim 120 V/m$), ez a pozitívan töltött részecskék miatt van az atmoszférában, amit feltételezték, hogy a felkszín közelében több van, magasan kevesebb (ami így lenne, ha a föld okozná ezen pozitívan töltött részecskék jelenlétét), de azt találták, a magassággal nő a sűrűségük, ami azt jelenti, hogy ez a kozmikus háttérsugárzás oka. 
+
+\newpage
+\section{Elektrosztatika III.}
+\subsection{Dipólusozásos móka}
+Vannak fémek meg szigetelők, a fémekbven találhatók delokalizált elektronok, a szigetelőkben pedig a részecskék képesek polarizálódni. Lehet egy polarizációs vektort definiálni:
+\begin{gather*}
+\vec{P} = \frac{\sum_i \vec{p}_i}{V}
+\end{gather*}
+Ezt nevezzük elektromos polariozációvektornak. Több féle anyag lehetséges, 
+\begin{itemize}
+\item tipikus anyagok: Ha nicsen elektromos tér, nincsen polarizációvektor sem. $\vec{E}=0 \Rightarrow \vec{P}=0$ 
+\item Elektrétek: olyan anyagok, amelyben nulla elektromos tér hatására is van polarizáció (például ferroelektromos anyagok, pl $BaTiO_3$)
+\item Piezoelektromos anyagok: $P_i = d_{ijk} \sigma_{jk}$
+\end{itemize}
+Na de, fenomenologikusan leírva egy tipikus anyagban igaz az összefüggés, hogy
+\begin{gather*}
+\vec{P} = \varepsilon_0 \chi \vec{E}
+\end{gather*}
+Ahol \begin{gather*}
+\chi = (\varepsilon_r-1)
+\end{gather*}
+Ezt pedig elektromos szuszceptibilitásnak hívják.
+\subsubsection{Molekuláris polarizáció}
+Például a Hélium atomban is van diólus elektromos tér nélkül is, az elektronfelhő eltolódása miatt, ekkor fel lehet írni az alábbi egyenletet:
+\begin{gather*}
+m \frac{d^2 x}{dt^2} = -m\omega_0^2 x + qE
+\end{gather*}
+Ennek a differenciálegyenletnek a stacionárius megoldása $x=\frac{qE}{m\omega_0^2}$ amelyből a dipólmomentum: $p=\frac{q^2E}{m\omega_0^2}$ és a polarizációvektor $P=n \frac{q^2E}{m\omega_0^2}$
+\subsubsection{Poláris molekula}
+Ha egy anyagban vannak poláris molekulák és hatunk az anyagra egy elektromos térrel, akkor az anyagban a poleris molekulák egy része beáll a tér irányéba, de nem az összes, mert van hőmozgás. Erre ez a törvény érvényes (valamiért):
+\begin{gather*}
+\vec{P} = \frac{np_0^2}{3k_{B} T} \vec{E}
+\end{gather*}
+ahol $p_0$ egy molekula dipólusmomentuma
+\subsubsection{Elektrosztatika szigetelőkben}
+Ha van egy szigetelő anyagunk, amelyben a ploáris molekulák egy irányba állnak, megvizsgáljuk a Gauss-törvény segítségévelk a töltés és Elektromos tér kapcsolatát, változó szélességű téglatest térfogatra, akkor ha $x$ az anyag szélétől vett távolság, $l$ a poláris molekulák "hossza", $d$ a molekulák távolsága, $N$ a molekulák soraiban a molekulák száma és $A$ a keresztmetszet területe, akkor ahogyan növeljük x értékét és megütjük a pozítív pólusait a molekuláknak, majd a negatívat, majd megint a pozitívat és így tovább, egy olyan függvényt kapunk, amely $d$ távolságig nulla, majd $l$ távolságon át $N\cdot Q$ tölést mutat, majd visszatér 0-hoz és így tovább. Minket csak a függvény átlaga érdekel, mert nem vaágyunk kíváncsiak a molekula szintű működésre (mert amúgysem így működik). 
+\begin{gather*}
+Q_{pol} = \overline{Q_{bezart}} = \frac{Nql}{d}
+\end{gather*} 
+Ezt az egyenletet átrendezve (mivel $ql=p$ és $\frac{Np}{dA}=P$) megkapjuk:
+\begin{gather*}
+\frac{NqlA}{dA}=|\vec{P}| \cdot A
+\end{gather*}
+Azaz:
+\begin{gather*}
+\oiint \vec{P} d\vec{A} = -PA = -Q_{pol}
+\end{gather*}
+Tehát ebből a szogeteőkre vett Gauss-törvány:
+\begin{gather*}
+\oiint \vec{E} d\vec{A} = \frac{1}{ \varepsilon_0} [Q_{szabad} + Q_{pol}] = \frac{Q_{szabad}}{\varepsilon_0} - \frac{1}{\varepsilon_0} \oiint \vec{P} d\vec{A}
+\end{gather*}
+Eztv átrendezve, beszorozva a permittivitással és egy integráljel alá írva:
+\begin{gather*}
+\oiint (\varepsilon_0 \vec{E} + \vec{P}) d\vec{A} = Q_{szabad}
+\end{gather*}
+Itt az integráljel mögötti kifejezést nevezzük elektromos eltolódásvektornak és $\vec{D}$-vel jelöljük.
+\begin{gather*}
+\boxed{\oiint \vec{D} d\vec{A} = Q}
+\end{gather*}
+Avagy felírható differenciális alakban, alkalmazva a Gauss-Osztrogradszkij tételt:
+\begin{gather*}
+\mathrm{div}\vec{D} = \rho
+\end{gather*}
+Lineáris elektromosságtanban az elektromos eltolásvektor arányos az elektromos térrel
+\begin{gather*}
+\vec{D} = \varepsilon_0 \vec{E} + \vec{P} = \varepsilon_0 \vec{E} + \varepsilon_0 \chi \vec{E} = \varepsilon_0 \varepsilon_r \vec{E}
+\end{gather*}
+Kondenzátor fegyverzetei közötti töltések általi elektromos térből ki lehet számolni a tér által tartamazott energiát
+\begin{gather*}
+\oiint \vec{D} d\vec{A} = q \\
+DA=q \Rightarrow D= q/A \\
+E=\frac{q}{\varepsilon_0 \varepsilon_r A} \\
+U = \frac{d}{\varepsilon_0 \varepsilon_r A} q=\frac{1}{C} q
+\end{gather*}
+Ebből ki lehet számolni az energiát, ami kondenzátor esetében $E_{nergia} = \frac{1}{2} C U^2 = \frac{1}{2} \varepsilon_0 \varepsilon_r A \frac{1}{d} E^2 d^2 = \frac{1}{2} D \cdot E V$, ekkor ha ezt leosztjuk a térfogattal megkapjuk az egységnyi térfogatra jutó energiát, ami az energiasűrűség
+\begin{gather*}
+w = \frac{1}{2} \vec{D} \cdot \vec{E}
+\end{gather*}
+\subsection{Határfelületek}
+Lineáris elektromosságtanban a határfelületekre érvényes kettő tény az első a konzervatív tér rotációmentességéből vezethető le. Mivel $\oint_{\partial A} \vec{E} d\vec{r} = 0$, ezért, ha elvégezzük az integrálást a két érintkező feületre, azt kapjuk (infinitezimális magasságú határoló téglalapra), hogy
+\begin{gather*}
+[E_1]_{tangens} \cdot \Delta l = [E_2]_{tangens} \cdot \Delta l \\
+ [E_1]_{tangens} = [E_2]_{tangens}
+\end{gather*}
+Továbbá, mivel az adott térfogaton belül nicsen szabad töltés sem, ezért:
+\begin{gather*}
+[D_1]_{normal} \cdot \Delta A = [D_2]_{normal} \cdot \Delta A \\
+ [D_1]_{normal} = [D_2]_{normal} \\
+ [E_1]_{tangens} \varepsilon_1 = [E_2]_{tangens} \varepsilon_2
+\end{gather*}
+\subsection{Tér dielektrikum üregeiben}
+\subsubsection{Keskeny rés}
+Ha egy dielektrikumban egy elhanyagolható vastagságú rés van, és az elektromos térre párhuzamos a hosszabb oldala (a nem elhanyagolható oldala), akkor az elektromos tér tangenciális komponense megegyezik az üreg két oldalán, az eltolásvektor pedig nem játszik szerepet (mert a normális komponenssel párhuzamos felület elhanyagolhatóan kicsi). Ha a hosszabb oldal merőleges az elektromos térre, akkor csak az eltolás vektorra vonatkozó határfeltétel lép életbe, továbbá az eltolásvektort ki lehet fejezni az elektromos térerősségvektorral lineáris elektromosságtanban $\vec{D} = \varepsilon_0 \varepsilon_r \vec{E}$-ként, azaz a határfeltételt felírva: $\varepsilon_0 E_{res} = \varepsilon_0 \varepsilon_r E_{dielektrikum}$, azaz a résben az elektromos tér a relatív permittivitás értékével van beszorozva.
+\subsubsection{Gömb}
+Gömb alakú résben az üregben az elektrmos tér
+\begin{gather*}
+\vec{E}_{ureg}=\vec{E}+\frac{\vec{P}}{3\varepsilon_0} = \frac{\varepsilon_r+2}{3}\vec{E}
+\end{gather*}
+\subsubsection{KOndezátor dielektrikummal}
+Ha egy kondenzátor két lemezei közötti részt egy deielektrikum tölti ki, aminek relatív permittivitása $\varepsilon$, akkor írjuk fel a gauss-tételt egy olyan téglatestre, ami kezdetben csak az egyik lapo foglalja magába, majd lassan csúsztatjuk végig a kondenzátoron és a végén a másik lap előtt áll meg.
+\begin{gather*}
+\varepsilon_r = \frac{x+d}{d} \\
+\oiint DdA = Q \Rightarrow DA=Q \\
+E(x) = \frac{D}{\varepsilon_0 \varepsilon} = \frac{Qd}{A\varepsilon_0(x+d)} \\
+U(x) = \int_{0}^d dx E(x) = \frac{Qd}{A\varepsilon_0}\ln(\frac{2d}{d}) \Rightarrow Q=CU \Rightarrow C=\frac{\varepsilon_0 A}{d\ln 2}
+\end{gather*}
+\subsubsection{Clausius-Mossotti-egyenlet}
+Összefüggést teremt egy anyag relatív permittivitása és a polarizálhatósága között.
+\begin{gather*}
+\frac{\varepsilon_r-1}{\varepsilon_r+2} = \frac{\alpha N}{2\varepsilon_0}
+\end{gather*}
+Ahol $\alpha$ egy adott anyagra jellemző állandó, a polarizálhatóság.
+\newpage
+\section{Mozgó töltések, áramok}
+\subsection{Áramok}
+Az áram folyását jellemezhetjük a mozgó töltések mennyiségével egy adott időintevallum alatt
+\begin{gather*}
+I=\frac{Q}{t}
+\end{gather*}
+Avagy kicsit általánosabban, minden időfüggő töltésfüggvényre:
+\begin{gather*}
+I(t) = \frac{dQ(t)}{dt}
+\end{gather*}
+Ebből a megofgalmazásből a már régen is használt áramsűrűség vektort definiálhatjuk és átírhatjuk az egyenletünket az alábbira:
+\begin{gather*}
+\vec{j} = \frac{I}{A}
+\end{gather*}
+A töltésmegamaradás lokális, azaz ha valahonnan töltés eltűnik, az csak úgy lehetséges, ha közvetlenül mellette megjelent azonos mennyiségű töltés (Buddha és a Dalai Lama nem lokálisan megmaradó mennyiség :D), tehát ebből $\frac{dQ}{dt} = I$, ebből felírható a kontinuitási egyenlet, jelenleg elektromos töltésre:
+\begin{gather*}
+\frac{d}{dt}\iiint \rho(t) dV = - \oiint \vec{j} dA 
+\end{gather*}
+Avagy a Gauss-Osztrogradszkij-tételt alaklamazva át lehet írni differenciális alakra:
+\begin{gather*}
+\frac{\partial}{\partial t} \rho(t) + \nabla \vec{j} = 0
+\end{gather*}
+\subsection{Hogyan mozognak a töltések}
+\subsubsection{Nulla surlódás}
+Például vákuumcsőben, ahol a surlódás (légellenállás) elhanyagolható, vagy szupravezetőkben
+\begin{gather*}
+m \vec{a} = Q \vec{E}
+\end{gather*}
+\subsubsection{Erős csillapítás}
+Ha van elektromos tér, akkor is az idő szerinti deriváltja a sebességnek nulla, nem lesz gyorsulás.
+\subsection{Differenciális Ohm-törvény}
+Ha van egy vezetőnk aminek a keresztmetszete A és hossza l, akkor az ellenállása egyenesen arányos a sűrűségével és hosszával és fordítottan a keresztmetszetével. $R = \varrho \cdot \frac{l}{A}$, ezt átífva:
+\begin{gather*}
+U=RI \Rightarrow R=\frac{U}{I} = \frac{El}{I} \\
+El = R \cdot \vec{j} \vec{A} = RjA
+\end{gather*}
+Így az elektromos áramsűrűségre átírva:
+\begin{gather*}
+\vec{j} = \frac{l}{AR}\vec{E}
+\end{gather*}
+Ahol az $\frac{l}{AR}$ az úgynevezett vezetőképesség $\sigma$ a jele  és a reciroka a fajlagos ellenállás. tehát
+\begin{gather*}
+\vec{j}  =\sigma \vec{E} = \frac{1}{\varrho} \vec{E}
+\end{gather*}
+\subsection{Vezetők fajtái}
+\subsubsection{Fémek}
+Sebességgel arányos csillapítása van a mozó töltéseknek:
+\begin{gather*}
+m\vec{a} = e\vec{E} - k\vec{v} \\
+m\dot{\vec{v}} = e\vec{E} \\
+\vec{v} = \frac{e\vec{E}}{m}t
+\end{gather*}
+A modell szerint azért lassul le az elektron mert "ütközik az atommaggal",ekkor bevezethetünk egy ún. relaxációs időt $\tau$, ami azt az időintervallumot jelenti, ami alatt átlagosan ütközik egy atommaggal az elektron. Az egyenletünket erre átírva:
+\begin{gather*}
+v = \frac{eE\tau}{2m} \sim \frac{eE\tau}{m}
+\end{gather*}
+Továbbá az áramsűrűség egyenletünkbe behelyettesítve:
+\begin{gather*}
+j = \frac{I}{A} =\frac{Q}{At} = \frac{Atvne}{At} = n\cdot e \cdot v
+\end{gather*}
+Adott felületen azok az elektronok mennek csak át t idő alatt, amik $t \cdot v$ távolságon belül vannak, tehát:
+\begin{gather*}
+nev = ne \cdot \frac{eE\tau}{m} = \frac{ne^2\tau}{m}E = \sigma E
+\end{gather*}
+kaptunk mégegy megfogalmazását a vezetőképességnek.
+Na de mi is okotzza a relaxációt? Amúgy semmi, ilyen jelenség nem nagyon van, de meg lehet magyarázni a vezetést így, meg egyébként is, nem tökéletes a kristály, hőmozgása van a résuecskéknek és elektron elektron kölcsönhatás is fellép.
+
+\subsubsection{Elektron és lyuk modell}
+Minden anyagnál ha tekintjük az elektronjainak az energiaszintjit, akkor találhatunk olyan szinteket amit nem töltenek be elektronok. Például a szigetelőknél ez egy nagyobb sáv, amelyett tiltott sávnak nevezünk (gap), itt nincsenek elektronok (>3ev, akkor szigetelő). Ha nem folyik áram, akkor a jobbra és balra menő elektrnok száma megegyezik. Bizonyos energia hatására egy elektron felugorhat másik energiaszintre, ami márt a gap felett van, azaz a másik irányba megy elektromos tér hatására, tehát, több elektron meg egy irányba, azaz folyik áram. Ilyenkor vezet a szigetelő. Dörzselektromosságnál is ez történik, csak az elektronok az egyik anyagból ugranak a másikba. Harmadjára pedig a félvezetők: itt is hasonlóan működik, gerjesztés hatására átugrik az egyik elektron magasabb energiaszintre, mozogni fog az elektron. De van lyukvezetés is, hogy az "energialyukakba" beleugrik egy másik elektron, ezzel is mozogva. Ebből jön a Drude-modell:
+\subsubsection{Drude-model}
+Ha van a pozitív (lyukaknak) és negatív (elektronoknak) mozgékonysági-tényezőjük, akkor le lehet írni, hogy :
+\begin{gather*}
+v_{+}=\mu_{+} E \\
+v_{-} = \mu_{-} E
+\end{gather*}
+Ahol:
+\begin{gather*}
+\mu_{\pm} = \frac{e\tau}{m}
+\end{gather*}
+És ebből az empirikus tényezőből a vezetőképességek is meg rekonstruálni lehet:
+\begin{gather*}
+ \sigma = e(\mu_{+} n_{+} + \mu_{-} n_{-})
+\end{gather*}
+Ahol a megefelő n-ek a luykak és elektronok száma.
+\subsection{Extra Lyukak}
+\subsubsection{Dópolás}
+Ha egy anyag molekularácsába egy másik anyagot belerakunk szennyeződéskénnt, ami negatív töltésű lesz ezálta (pl.: $ Si_{4}As $) és felmelegítjük, akkor a negatív töltés mozogni kezd majd, azaz az elektron mozog. Ezt nevezik n-típusú (negatív) dópolásnak. \\
+Ennek az alternatívája a p-típusú (pozitív) dópolás, amekyben egy pozitívan tölltött szennyeződés jön létre, azaz tulajdonképpen egy "lyuk", amit be tud tölteni az elektron, így mozogva. Ilyen például a $SI_{4}In$ Silícium és Indium keveréke.
+\subsection{Folyadékok} 
+Folyadékoknál általában a pozitív és negatív számsűrűség megegyezik, tehát szimplán:
+\begin{gather*}
+\sigma = n e (\mu_{+} + \mu_{-})
+\end{gather*}
+\subsection{Gázok}
+Jó szigetelők, általában fény és hang is kíséri a vezetést.
+\subsection{Vákuum}
+A gázoknál is jobb szigetelő, csak az elektron tud benne mozogni, a lyuk nem, ez pedig a katódsugárcső.
+\subsection{Áram és Hő}
+A joule-hő aza  hő amit egy vezeték produkál miközben áram folyik át rajjta.
+\begin{gather*}
+W=Uq=U\cdot I\cdot t \Rightarrow P_{ho} = U\cdot I
+\end{gather*}
+Ha van egy adott A keresztmetszetű, l hosszúságú vezetőnk, amin I áram folyik át:
+\begin{gather*}
+P=UI=El\vec{j}\vec{A} = EjV \Rightarrow \vec{j} \cdot \vec{E} = w
+\end{gather*}
+Ahol w a teljesítménysűrűség.
+\subsection{Termoelektromos jelenségek}
+\subsubsection{Seebeck-effektus}
+Hőmérsékletkülönbség hatására elektromos áram generálódik
+\begin{gather*}
+\vec{E}=\alpha \nabla T
+\end{gather*}
+Ahol alfa az a Seebeck-együttható.
+\begin{gather*}
+\Delta V= \alpha_{3}(T_{sz}-T_2) + \alpha_{1} (T_{2}-T_1) +\alpha_{2}(T_{1}-T_{2}) + \alpha_{3}(T_2-T_{sz}) \\
+U=(\alpha_1-\alpha_1)(T_1-T_2)
+\end{gather*}
+Ezt lehet pélsául hőmérsékletmérésre használni. Réz-konstantán keveréket szokrtak haszbnálni, mert a $\Delta \alpha$ itt nagy. 
+\subsubsection{Peltier-effektus}
+Az elektromos áramsűrűség hatására hőáramsűrűség jön létre, így lhet elektromosan hűteni anygokat.
+\subsubsection{Áram kémiai hatása}
+Ha mondjuk klóroldatba réz elektródákat teszünk majd áramot kapcsolunk, akkor a kétszeresen pozitívan tölötött réz a negatív pólus felé indul a negatívan töltött klór pedig a pozitív pólus felé, ami által klórral beborítódik az elektróda. Így működik a galvanizáció, elektrolízis.
+
+\newpage
+\section{Egyenáramú hálózatok}
+\subsection{Egyenáramú hálózatok}
+Kirchhoff-törvények:
+\subsubsection{Kirchhoff csomóponti törvénye}
+Adott csomoponton a befolyó áramerősségek összege megegyezik a kifoló áramok összegével. Ez az áramsűrűség divergenciájából jön ki, azaz, ha a csomópot körül egy kis térfgatot nézünk arra igaz kell, hogy legyen 
+\begin{gather*}
+\sum_i I_i  = 0 \hspace{30pt}
+\mathrm{div}\vec{j} = 0 \hspace{30pt} 
+\nabla \vec{j} = 0
+\end{gather*}
+Azaz a be és kifolyó áramok összege nulla.
+\subsubsection{Kirchhoff huroktörvénye}
+Egy áramkörön belül egy zárt hurokra vett feszülteség nulla, azaz ha vannak fogyasztók, akkor a fohyasztókra és kábelre eső feszültségek összege (előjeles) nulla kell ,hogy legyen, ugyanis itt meg teljesül az elektromos tér rotációmentessége, azaz
+\begin{gather*}
+\oint \vec{E} d\vec{r} = 0  \hspace{30pt}
+\mathrm{rot}\vec{E} = 0 \hspace{30pt}
+\nabla \times \vec{E} = 0
+\end{gather*}
+\subsubsection{Belső ellenállás}
+sHa egy teleped reálisan akarunk modellezni, akkor kell lennie egy belső ellenállásának, lineárisan, azaz nulla áramfolyás alatt lesz egy üresjárati feszültsége, ha pedig rövidrezárjuk, lesz egy rövidrezárt áramerőssége, ekkor pedig a feszültség lesz nulla. Ebből mivel ez egy lineáris görbe, a meredeksége adja meg minden pontban (itt most mindehol ugyanaz) az ellenállást, amit belső ellenállásnak nevezünk.
+\begin{gather*}
+R_b = \frac{U_{ures}}{I_{rovid}}
+\end{gather*}
+\subsubsection{Thévenin-tétel}
+\begin{center}
+Minden lineáris időinvariáns áramkört lehet egy ideális feszültséggel és egy, azzal sorosan kapcsolt eredő elennállással helyettesíteni.
+\end{center}
+\subsubsection{Norton-Mayer-tétel}
+\begin{center}
+Minden lineáris időinvariáns áramkört lehet egy ideális áramforrással és egy, azzal párhuzamosan kapcsolt eredő ellenállással helyettesíteni
+\end{center}
+
+\subsection{Kondenzátorok bekapcsolási jelenségei}
+Ha adott $U$ ideális feszültségforrás milyen lesz a kodenzátor $I(t)$ függvénye bekapcsolás után?
+Ha felírjuk a huroktörvényt a feszültség-ellenállás-kondenzátor (RC) körünk-re és bevezetjük a töltésmennyiség időfüggéséét, akkor az alábbi összefüggést írhatjuk fel:
+\begin{gather*}
+RI(t)+ \frac{Q(t)}{C}-U=0
+\end{gather*}
+De az áramerősség az a töltés időfüggésének az idő szerinti deriváltja, azaz 
+\begin{gather*}
+U=R\frac{dQ(t)}{dt} + \frac{1}{C}Q(t)
+\end{gather*}
+Ez egy elsőrendű inhomogén differenciálegyenlert, aminek a megoldása egy exponenciális függvény lesz, majd ha a kezdeti feltételeket is behelyettesítjük ($Q(0)=0$) az eredmény nem más, mint
+\begin{gather*}
+Q(t)=CU\left( 1-e^{-\frac{t}{RC}}\right)
+\end{gather*}
+Így a kondenzátoron erő feszültség időfüggvénye közel van az ellenálláson eső feszültség időfüggvényének integráljához, ezért kvázi-integráló áramkörnek nevezik.
+\subsection{Dióda}
+A dióda olyan áramköri elem, amelynek az I-U karakterisztikája negatív feszültségekre konstans, angyon kicsi érték, pozitívakra exponenciális, négyzetes, lineáris, sok különböző van, továbbá negatívakra egy bizonyos határfefeszltésg alatt levág(hat). \\
+Egyenirányításra lehet használni például. \\
+\subsubsection{Működési elve}
+kettő félvezető van összecsatolva, egy p és egy n dópolású, ami által egyik irányba enged csak áramot.
+\subsection{Tranzisztor}
+A tranzisztor olyan áramköri elem, amelyegy emitter, collector és bázis terminálokból áll, rá lehet kötni egy bázisáramot ($I_b$), van neki egy erősítési tányezője ($\beta$), ami által a bázisáramot fel lehet erősíteni $I=I_b\cdot\beta$-szorosára. De lehet kvázi kapcsolóként is használni.
+Sok haszna van, például nagy áramerősségeknél a kis teherbírású komponensek megvédése. Meg a szamítógép úgy amúgy.
+\subsubsection{Működési elve}
+Egy p, egy n és mégegy p (vagy konjugálva) dópolású félvezetőhármasból áll, amiben a középsőre van kötve a bázis.
+\newpage
+\section{Magnetosztatika I (vákuum)}
+\subsection{Bevezetés}
+A mágneses teret naygjából analog módon lehet definiálni az elektromos térrel, azaz egy erőből indulhatunk ki. Ha egy "mágneses térbe" behelyezünk egy töltést akkor az arra ható erő merőleges lesz a sebesség irányra, töltésésvel egyenesen arányos és sebsségének nagyságával is. Azaz
+\begin{gather*}
+\vec{F} = Q \vec{v} \times \vec{B}
+\end{gather*}
+Ezen erő éltal tudjuk az ú.n mágneses indukcióvektort definiálni.
+\subsubsection{Vektorfajták}
+Két fajta vektort különböztetünk meg: a polár és axiálvektort (nem összekeverendő a poláris koordinátákkal). 
+\begin{itemize}
+\item Polárvekornak nevezzük azokat a vektorokat aminek fizikai tartalma általában közvetlenül mérhető és fontos tulajdonságuk a tükrözésre vonatkozó azonosság. Ha egy síkra tükrözzük tökröződik a polárvektor.
+\item Az Axiál vektor ezzel ellentétben tükrözésre invariáns, pélkdául gondoljunk a szögsebességvektorra, amit ha tükrözünk nem változik, ugyanis a forgás iránya nem változik. 
+\end{itemize}
+\subsubsection{mozgó töltések}
+Mágneses térben mozgó töltésekre hat a Lorentz erő. De ilyen mozgásoknál a mégneses tér munkája és teljesítménye is nulla lesz ugyanis $P=\vec{F} \cdot \vec{v}$ , de az erő és sebesség egymásra merőleges minden indőpillanatban azaz ez a munka mindig nulla.
+\subsubsection{Ciklotron}
+Ha a mágneses térre merőleges sebességgel egy töltött részecskét beküldünk, az milyen mozgást fog végezmi?
+MInden pntban az erő ami hat rá a sebsségre merőleges, ez a definíciója a körmozgásnak, tehát a centripetális erőt bevezeteve megtudhatjuk a körfrekvenciáját a mozgásnnak:
+\begin{gather*}
+QvB=mv\omega \Rightarrow \omega = \frac{QB}{m} 
+\end{gather*}
+Ezt a frekvenciát nevezik Ciklotronfrekvenciának, ugyanis a ciklotron így működik. Egy kör alakú térrészben egy részecske mozog, amelyben homogén mágneses mező van. A két félkör között van egy gyorstítósáv, amelyben energiát kap a részcske.
+\subsubsection{Elektromos és Mágneses tér}
+Ha elektormos és mágneses térben mozgatunk egy részecskét, akkor az ez a egyenlet lesz rá is érvénye:
+\begin{gather*}
+\vec{F} = Q(\vec{E} + \vec{v} \times \vec{B})
+\end{gather*}
+Ha szeretnénnk sebességmérőt építeni, akkor elég egy apró lyukat vágni egy ernyőbe, és merőleges elektromos és mágneses térbe át kell küldeni a töltött részecskét. Ekkor igaz lesz a lyukon átmenő részecskékre:
+\begin{gather*}
+\vec{E} + \vec{v} \times \vec{B} = 0 \Rightarrow \frac{|E|}{|B|} = v
+\end{gather*}
+Azaz csak egy  bizonyos (általunk, a mágneses és elektromos tér nsagyságán keresztül) választott sebességű részecskék mennek át a lyukon.
+\subsubsection{Mozgásegyenlet}
+Az elektromos és mágneses térben mozgó részecske mozgásegyenlete a következő: 
+\begin{gather*}
+\vec{a} = \frac{Q}{m}(\vec{E} + \vec{v} \times \vec{B}) \\
+\frac{dv}{dt} = \varrho (E(x)+v \times B)
+\end{gather*}
+Azaz merőleges E és B mezőkkel az elhajlásokból a tömegarányt is meg lehet mérni. Így működik a tömegspektroszkópia. A millikan-kísérlettel pedig az elemi töltést meg lehet mérni, azaz ebből az elektron tömege is kiszámolható.
+\subsubsection{Thomson-kísérletek}
+Thomson kísérletei közé tartoztak:
+
+Egy kondenzátor lemezei közé mágneses teret is rakott, ebbe töltéseket küldött át, majd az eltérüléseiket nézte. Ez az eltérülés arányos a töltés és tóömeg hányadosával, így meg tudta állapítani az elektron töltés-tömeg-arányát. Már csak ezen túl az egyiket kellett meghatározni, és lehetett a másikat is tudni. A töltést a Millikan-kísérlettel lehetett meghatározni, tehát ezzel megmérte az elektron tömegét.
+
+Ezután meg tudta mérni a katódsugárcsőből jövő sugárzást, aminek az alapja kettő terminál, egy pozitív (katód) és negatív (anód), ami között elektronok a feszültségkülönbség miatt utaznak. Kiderült, hogy elektronokbó áll a katódsugár és így meg tudta mérni őket.
+\subsubsection{Hall-effektus}
+Vegyünk egy vékony anyagdarabot, amelyben szabadon mmozoghatnak a töltések. Vegyünk az elem vékoy lapjára merőleges mágneses teret, egy erre merőleges elektroos teret, és kössünk egy voltmérőt a két oldalára. A töltések amik mozognak az egész elem hhosszán, arra igaz lesz az alábbi:
+\begin{gather*}
+Q\vec{E} = Q\vec{v} \times \vec{B}
+\end{gather*}
+Azaz E erőleges a v-re, így az áram irányéra is. Tehát áram fog folyni az elemben. ($j=nQv$ és $j=I/ab$)
+\begin{gather*}
+U_H = E\cdot a = vBa = \frac{j}{nQ} Ba = I\frac{B}{bnQ} = IR
+\end{gather*}
+Itt fellelhetünk egy ún. Hall-ellenállást, amelynek értéke $\frac{B}{bnQ}$. Azaz a Hall-effekt szenzor képes feszültséget mutatni mágneses tér hatására. Mágneses tér érzékelésére alkalmas.
+\subsubsection{Drótdarab mágneses térben}
+Ha egy l hosszú drót B mágneses térben van és I áram folyi rajta akkor a rá ható erő: 
+\begin{gather*}
+\vec{F} = Q (\vec{v} \times \vec{B}) \cdot n \cdot A \cdot l \Rightarrow Qvn=j \\
+=I(\vec{l} \times \vec{B}), \hspace{20pt} \mathrm{Ahol} \hspace{20pt} \vec{l}= l\cdot \frac{\vec{j}}{|j|}
+\end{gather*}
+\subsubsection{Drótkeret mágneses térben}
+Drótkeret mrőleges B mezőre és I áram folyik benne órajárással megegyező irányban. Ekkor a forgatóyomaték ami hat a keretre:
+\begin{gather*}
+\vec{M} = 2\cdot \frac{b}{2} I(\vec{l} \times \vec{B}) = IabB = IAB = mB
+\end{gather*}
+Ahol m a mágneses dipólmomentum. $\vec{m} =  A \cdot |\vec{I}| \cdot \vec{n}$
+\subsubsection{Ørsted-kísérlet}
+egy végtelen vezető kelt mágneses teret, általa keltett mágneses tér pedig:
+\begin{gather*}
+B=\frac{\mu_0}{2\pi} \frac{I}{r}
+\end{gather*}
+\subsection{Magnetosztatika alaptétele}
+\subsubsection{Ampére-törvény}
+Ørsted a kísérletéből levezette az alaptételét, miszerint egy zárt hurokra vett integrálja a mágneses térnek $\mu_0 I$. A levezetés:
+\begin{gather*}
+\oint \vec{B} d\vec{r} = \oint \frac{\mu_0}{2\pi} \frac{I}{R} d\vec{r} = \frac{\mu_0}{2\pi} \frac{I}{R} 2\pi R = \mu_0 I
+\end{gather*}
+Mint kiderült ez általánosabb, nem csak az egyenes vezetőre igaz, de a mágneses tér egészére.
+\begin{gather*}
+\boxed{
+\oint_\gamma \vec{B} d\vec{r}= \mu_0 I }
+\end{gather*}
+A szokásos elektromos áramsűrűség bevezetésével és a Stokes-tétel használatával a differenciális alak:
+\begin{gather*}
+\boxed{
+\nabla \times \vec{B} = \mu_0 \vec{j}}
+\end{gather*}
+Ezt pedig Ampére-féle gerjesztési törvénynek nevezik, avagy simán Ampére-törvény
+Felületre vett integrálja pedig nulla a mágneses térnek: 
+\begin{gather*}
+\boxed{\oiint \vec{B} d\vec{A} = 0} 
+\end{gather*}
+Avagy differenciális alakban:
+\begin{gather*}
+\boxed{\nabla \cdot \vec{B} = 0}
+\end{gather*}
+\subsection{Maxwell-törvények}
+Ezzel, ugyan kimondva eddig nem volt, de felírtuk a Maxwell törvényeket (Maxwell-Heaviside egyenletek) magnetosztatikában, először integrális alakban: 
+\begin{gather*}
+\oiint_{\partial V} \vec{E} d\vec{A}= \iiint_V \frac{\varrho}{\varepsilon_0} dV \hspace{50pt} \text{Gauss-törvény} \\
+\oint_{\partial A} \vec{E} d\vec{r} = 0 \hspace{50pt} \text{Faraday-törvény} \\
+\oiint_{\partial V} \vec{B} d\vec{A} = 0 \hspace{60pt} \text{Gauss-törvény} \\
+\oint_{\partial A} \vec{B} d\vec{r} = \iint_{A} \mu_0 \vec{j} \hspace{20pt} \text{Ørsted-Ampére-törvény} 
+\end{gather*}
+Differenciális alakban pedig:
+\begin{gather*}
+\nabla \cdot \vec{E} = \frac{Q}{\varepsilon_0} \hspace{40pt} \nabla \times \vec{E} = 0 \\
+\nabla \cdot \vec{B} = 0 \hspace{40pt}
+\nabla \times \vec{B} = \mu_0 I
+\end{gather*}
+\subsection{Biot-Savart-törvény}
+\subsubsection{A törvény felírása}
+Ha ki szeretnénk számolni egya dott pontban a mágneses indukcióvektort amit valamilyen áramhurok kelt, akkor az alábbi törvényt alkalmazzuk:
+\begin{gather*}
+\vec{B}(\vec{r}) = \frac{\mu_0}{4\pi}I \oint \frac{dr' \times (\vec{r}-\vec{r} \ ')}{|\vec{r}-\vec{r} \ '|^3}
+\end{gather*}
+Ahol $\mu_0$ a permeabilitás, I a hurokban folyó áramerősség, r vektor a heylvektor, r' vektor pedig a hurkon végigfutó paramétervektor.
+
+\subsubsection{Lemmák}
+Vektorpotenciál bevezetése: Olyan vektor amire igaz a kovetkező:
+\begin{gather*}
+\nabla \times \vec{A} = \vec{B}
+\end{gather*}
+A vektorpotenciál nem egyértelmű, ezért A Coulomb-mlrtket be kell vezetxni, miszerint $\mathrm{div}\vec{A} = 0$. Így már egyértelmű lesz. \\
+T.f.h $\mathrm{div} \vec{A}_0 \neq 0 \Rightarrow \mathrm{div} \tilde{\vec{A}} = 0$, eltranszformáljuk. Ez egy mértéktransformáció. $\vec{A} = \vec{A}_0 + \mathrm{grad} \chi$. Így:
+\begin{gather*}
+\nabla \vec{A} = \nabla \vec{A}_0 + \nabla^2 \chi \\
+\nabla \times \vec{A} = \nabla \times \vec {A}_0 + \mathrm{rot \ grad} \chi
+\end{gather*}
+De $\mathrm{rot \ grad} \chi$ mindig nulla tehát a rotációjuk megegyezik, a divergenyiaafeltételre meg lehet úgy választani a chi-t, hogy nulla legyen.
+
+\subsubsection{Levezetése}
+Ampére-féle gerjesztési-törvényből:
+\begin{gather*}
+\nabla \times (\nabla \times \vec{A}) = \nabla \cdot (\nabla \cdot \vec{A}) - \nabla^2 \vec{A} \\
+\nabla^2 \vec{A} = -\mu_0 \vec{j}
+\end{gather*}
+ebből:
+\begin{gather*}
+\vec{A}(\vec{r}) = \frac{\mu_0}{4\pi}\int d^3\vec{r}' \frac{\vec{j}(\vec{r}')}{|\vec{r}-\vec{r}'|}
+\end{gather*}
+Általában moivel $d^3\vec{r}' \approx I d\vec{r}'$
+\begin{gather*}
+\vec{A}(\vec{r}) = \frac{\mu_0I}{4\pi}\int  \frac{d\vec{r}'}{|\vec{r}-\vec{r}'|}
+\end{gather*}
+\subsubsection{Coulomb-mérték teljesülhet-e?}
+\begin{gather*}
+\mathrm{div} \lambda \vec{a} = \mathrm{grad} \lambda \vec{a} + \lambda \mathrm{div} \vec{a} \\
+\partial_i \lambda a_i = (\partial_i \lambda)a_i + \lambda \partial_i a_i \\
+\mathrm{div} \vec{A} (\vec{r}) = \frac{\mu_0}{4\pi} \int d^3 \mathrm{div} \frac{\vec{j}}{|\vec{r}-\vec{r}'|} = \frac{\mu_0}{4\pi} \int d^3  \vec{j} \mathrm{grad}\frac{1}{|\vec{r}-\vec{r}'|} \\
+-\frac{\mu_0}{4\pi} \int d^3  \vec{j} \mathrm{grad}'\frac{1}{|\vec{r}-\vec{r}'|} = -\frac{\mu_0}{4\pi} \left[  \int d^3  \vec{j} \mathrm{div}'\left( \frac{1}{|\vec{r}-\vec{r}'|} \right) -\int d^3  \vec{j} \mathrm{div}'\left( \frac{1} {|\vec{r}-\vec{r}'|} \right)    \right] 
+\end{gather*}
+
+\subsubsection{Mágneses indukcióvektor}
+\begin{gather*}
+\vec{B} = \mathrm{rot} \vec{A} = \mathrm{rot} \left[ \frac{\mu_0I}{4\pi} \oint \frac{dr'}{|r-r'|} \right] \\
+\mathrm{rot} (\lambda \vec{a}) = \lambda \mathrm{rot} \vec{a} + \mathrm{grad} \lambda \times \vec{a} \\
+\epsilon_{ijk} \partial_j (\lambda a)_k = \lambda \epsilon_{ijk}(\partial_j a_k) + \epsilon_{ijk} (\partial_j \lambda) a_k \\
+\vec{B} = \frac{\mu_0 I}{4\pi} \oint \mathrm{grad} \frac{1}{|\vec{r}-\vec{r}'|} \times d\vec{r}' + 0 =  \frac{\mu_0 I}{4\pi} \oint \frac{d\vec{r}' \times (\vec{r}-\vec{r}')}{|\vec{r}-\vec{r}'|^3}
+\end{gather*}
+\subsection{Áramjárta hurok távoltere}
+vegyünk egy a, b oldalú hurkot, amin I áram jár át és az x-y síkban van fektetve. Ekkor ki lehet számolni a vektorpotenviált: 
+\begin{gather*}
+\vec{A}(\vec{r})_x = \frac{\mu_0I}{4\pi} \left[ \int_{-a/2}^{a_2} \frac{dx'}{\sqrt{(x-x')^2 + (y-\frac{b}{2})^2 + z^2}} + \int_{a/2}^{-a/2} \frac{dx'}{\sqrt{(x-x')^2 + (y+\frac{b}{2}) + z^2}} \right]
+\end{gather*}
+Mivel a távoltérre vagyunk kíváncsiak, $(x-x') \approx x$ és $(y^2-yb+\frac{b^2}{4}) \approx y^2-yb$
+\begin{gather*}
+\vec{A}(\vec{r})_x \approx \frac{\mu_0 I a}{4\pi} \left( \frac{1}{\sqrt{r^2-by}} - \frac{1}{\sqrt{r^2+by}}\right)
+\end{gather*}
+Ez pedig Taylor-sorba fejtve:
+\begin{gather*}
+\frac{\mu_0 I a b}{4\pi} \frac{y}{r^3} = \frac{\mu_0 \vec{m}}{4\pi} \frac{y}{r^3}
+\end{gather*}
+Ennek pedig ha vesszük a rotációját, úgy, hogy az m vektor kifele mutat a keretből:
+\begin{gather*}
+B=\frac{\mu_0 m}{4\pi} \frac{1}{r^5} \begin{pmatrix}
+-3zx \\-3yz \\r^2-3z^2
+\end{pmatrix} = \frac{\mu_0}{4\pi} \left( \frac{3(\vec{m}\vec{r})\vec{r}-\vec{m}r^2}{r^5} \right)
+\end{gather*}
+\subsection{Szolenoid-tekercs}
+Ampére-törvénnyel: legyen a hurok amit nézünk olyan, hogy menjen át a szolenoid középvonalán. Ekkor:
+\begin{gather*}
+\oint \vec{B} d\vec{r} = \mu_0 I_{atfolyo} \\
+B \cdot l = NI\mu_0 \\
+B= \mu_0 N\frac{I}{l}
+\end{gather*}
+\subsection{Vezetőben mozgó töltések relativitása}
+\subsubsection{Álló koordinárandszer}
+Egy vezetékben töltések vannak, a vezeték felett a töltés v sebességgel jobbra mozog, rá lorentz-erő hat. 
+\begin{gather*}
+F_L = QvB=Qv\frac{\mu_0}{2\pi} \frac{I}{r} = \frac{Qv\mu_0}{2\pi} \cdot \frac{n\cdot e \cdot v}{r} \cdot A
+\end{gather*}
+\subsubsection{Mozgó koordinártarendszer}
+Helyezzük át az egész lrendezést egy jobbra v-vel mozgó koordinátarendszerbe, ahol mozog a vezetőben a töltés,  de a külső töltés nem. Így nincsen Lorentz erő,  tehát mitől fog kanyarodni a töltés? Feloldás: $n_+' \neq n_-'$
+\begin{gather*}
+F_E=QE=Q\frac{1}{2\pi \varepsilon_0} \frac{n}{r}= \frac{Q}{2\pi \varepsilon_0} \left(  \frac{en_+'A}{r} -\frac{en_-'A}{r} \right) \\
+F_E' = F_L \\
+\frac{Q\mu_0 n_- q v^2 A}{2\pi r} = \frac{Q e A}{2\pi \varepsilon_0 r} (n_+'-n_-') \\
+\mu_0 n_- v^2 = \frac{n_+' - n_-'}{\varepsilon_0} \\
+\varepsilon_0 \mu_0 = \frac{1}{c^2} \\
+n_- \cdot \frac{v^2}{c^2} = n_+'-n_-'
+\end{gather*}
+HA $n_- = f(v)n_-'$, és $n_-=n_+$, mert az eredeti felállásban a kettő egyenlő volt, és $n_+f(v) = n_+'$akkor:
+\begin{gather*}
+n_- \frac{v^2}{c^2} = f(v)n_- - \frac{1}{f(v)}n_-
+\end{gather*}
+ebből:
+\begin{gather*}
+f(v)= 1+\frac{v^2}{2c^2}
+\end{gather*}
+Ez pedig a Lorentz-faktor közelítése ($(1-\frac{v^2}{c^2})^{-1/2} \approx (1+\frac{v^2}{2c^2})$). 
+\newpage
+\section{Magnetosztatika II (közeg)}
+\subsection{Mágneses közegek}
+Ferromágnes, paramágnes, diamágnes. 
+Ferromágnes: olyan anyag, maely mágneses térben úgy működik mint egy mágnes. (Fe, Co, Ni)
+Paramamágnes: mágneses tér hatására kicsit vonzódik
+Diamágnes: márgneses tér hatására kicsit taszít.
+\subsubsection{Mágnesezettség}
+\begin{gather*}
+\vec{M} = \sum_i \vec{m}_i \frac{1}{V}
+\end{gather*}
+Ahol m a mágneses dipólmomentuma minden irányított felületdarabnak, amiben áram folyik (hurokáramnak). Ha ezeket összegezzük egy adott felületre akkor az egymás melletti oldalak mind kiütik egymást (nagyjábl), tehát effektíve a vezető felszínén fognak köráramok folyni. Vegyünk egy szolenoid tekercset, legyen a menetszáma N, follyon I áram át rajta és legyen $I_{sz}$ szabad áram a rendszerben. Ekkor:
+\begin{gather*}
+I_p = I = \frac{m_{koraram}}{a} = \frac{N \cdot m_{koraram}}{A} \\
+\oint \vec{B} d\vec{r} = \frac{Nm \mu_0 d}{A d} = \frac{Nm \mu_0}{V} d = \mu_0 M d  = \mu_0 (I_p + I_{sz}) \\
+I_p = \oint \vec{M} d\vec{r} = Md \Rightarrow \oint \left( \frac{\vec{B}}{\mu_0}-\vec{M} \right) d\vec{r} = I_{sz}
+\end{gather*}
+Itt a zárójeles mennyisséget el lehet nevezni $\vec{H}$-nak, azaz mágneses térerősségnek. Így a szabad és "belső" áramokra a gauss-törvény mágnesességre:
+\begin{gather*}
+\oint \vec{H} d\vec{r} = I
+\end{gather*} Ebből a szokásos átalakításokkal megint megkaphatjuk, hogy
+\begin{gather*}
+\nabla  \times \vec{H} = \vec{j}
+\end{gather*}
+\subsection{Gyengén mágnesezhető anyagok}
+Ha $\vec{H}=0$ és $\vec{B}=0$ akkor $\vec{M}=0$. Ebből a lineáris mágnesességtan:
+\begin{gather*}
+\vec{M} = \chi \vec{H} \Rightarrow \vec{B} = \mu_0(\vec{H} + \vec{M}) = \mu_0 (1+\chi) \vec{H}
+\end{gather*}
+Ahol, mint az elektromosságban a $\chi$ a szuszceptibilitás, az $1+\chi$ pedig a relatív permeabilitás
+\begin{itemize}
+\item Paramágnesesség: $\mu>\mu_0$, $\chi>0$, pl.: Al, Levegő 
+\item Diamágnesesség: $\mu<\mu_0$, $\chi<0$, pl.: Víz, Bi, Cu
+\end{itemize}
+\subsection{Erősen mágnesezhető anyagok}
+\subsubsection{Hiszterézis}
+Az ilyen anyagoknál van egy bizonyos görbe, amelyet mágneses Hiszterézisnek nevezünk.
+\begin{center}\includegraphics[scale=0.5]{Ehysteresis}\end{center}
+Három fontos pontja van:\\
+$M_s$ ami a telítettségi mágnesezettség, ami az aszimptotája a görbének \\
+$M_r$ ami a reanens mágnesezettség, ami az a pont ahol a hysterézis metszi az y tengelyt \\
+$H_c$, ami a remanencia(-erő), az ahol az x tengelyt metszi a görbe. \\
+Az origóból kijövő görbeszakasz pedig az ún. szűzgörbe, amit csak a mágnesezés kezdetén lehet elérni. Minél szélesebb a hysterézis, annál keményebb mágnesről van szó általánosságban. 
+\subsubsection{Hőmérsékletfüggés}
+Hőmérsékletfüggése is van a szuszceptibilitásnak, ami így néz ki:
+\begin{center}
+\includegraphics[scale=1]{FigureJpng}
+\end{center}
+Ez a Curie-Weiss törvény, azaz
+\begin{gather*}
+\chi = \frac{C}{T-T_c}
+\end{gather*}
+Ahol C az anyagra jellemző Curie-Weiss állandó és $T_c$ a Curie-hőmérséklet. A Curie-hőmérséklet alatt a ferromágneses és ferrimágneses anyagok sontán mágneseződnek, mágneses tér hiányában is.
+\subsubsection{Barkhausen-zaj}
+A hysterézis görbéje nem egy folytonos görbe, hanem apró ugrásokból áll, ugyanis ahogyan a mágneses teret növeljük, a domének beállnak irányokba de gyakorlaatilag egyesével állnak ba (egy bizonyos égneses térerősség felett átfordul az indukcióvektor irnyába a domén), és ezáltal nem folytonos lesz az átmenet hanem lépcsős.
+\begin{center}
+\includegraphics[scale=0.5]{Barkhausen_jumps}
+\end{center}
+\subsubsection{Ampére-hipotézis (sehol nem találtam hogy így hívnák ezt a jelenséget)}
+Adott egy töltés (mondjuk pozitív, hogy hívhassuk protonnak) és körülötte egy ellentétes töltés ami kering (legyen elekttron), akkor klasszikus mechanikából (és az elektrommágnesség definícióiból) tudjuk:
+\begin{gather*}
+m=Ir^2\pi = \frac{e}{T} r^2\pi  = \frac{2r\pi}{T} e \frac{v}{2} =\frac{evr}{2} = \frac{e}{2m} mvr = \frac{e}{2m_e} L 
+\end{gather*}
+Ahol a perdüelet prefaktora az ún. gyromágneses-faktor
+\subsubsection{Paramágnesességben}
+Olyan anyagok amik kis mérték ben vonzódnak egy külső mágneses térhetóz és a tér hatására belső mágneses tér keltődik bennük.
+\subsubsection{Einstein-de Haas effektus}
+Megmérték ezt a dipólmomentumot, amit az előző szekcióbn tárgyaltunk, de nem az az eredmény jött ki, amit vártak. Egy tekercsben egy felfüggesztett forgó vasmagot vizsgáltak, a tekercsbe áramot vezettek ezzel meg lehetett mérni az eredő mágneses dipólusmomentumot. Arra az eredményre jutottak, hogy:
+\begin{gather*}
+\vec{m} = 2 \cdot \frac{e}{2m} \vec{N}
+\end{gather*}
+Azaz a kétszerese jött ki az elméleti értéknek. Ezt a faktort nevetzik g-faktornak (itt ez 2), de ezt nem lehet a klasszikus fizikával megmagyarázni, erre kellett várni egy jó pár évet, hogy a kvantummechanika eszközeivel meg lehessen magyarázni.
+\subsubsection{Stern-Gerlach kísérlet}
+Egy inhomogén mágneses teren áthaladnak ezüstatomok és a spinjük szerint kiválasztódnak. Ezzel a méréssel az alábbi összefüggésre jutottak:
+\begin{gather*}
+\vec{m} = \frac{e}{2m} (\vec{L} + 2\vec{S})
+\end{gather*}
+Ahol L és S a pálya és spin-pertülete az ezüstatomoknak.
+\subsubsection{Szupravezetés - Kamerlingh Onnes}
+Olyan anyagok, amelyek bizonyos hőmérséklet alatt nulla ellenállással vezetik az áramot, azaz végtelen a vezetőképességük. Ilyen anyagok általában hnagyon hidegek, magas hőmérsékletű már a 77K fölötti. Szobahőmérsékleten egyelőre ismereteink szerint nem létezik szupravezető.
+\subsubsection{Meissner-effektus}
+A szupravezetés kritikus hőmérséklete alatt a mágneses indukcióvektor nem penetrálja az anyagot, ezzel létrehozva a "tökéletes diamágnest" . Azért tökéletes a diamágnes, mert olyan mágneses teret hoz így létre ami kinullázza az eredő mágneses teret, ezzel árnyékolva azt.
+\subsection{Határfeltételek}
+A gauss és Faraday törvényekből kiindulva levezethetők az elektromossághoz hasonló határfeltételek: 
+\begin{gather*}
+\oint \vec{H} d\vec{r} = I \\
+\oiint \vec{B} d\vec{A} = 0
+\end{gather*}
+Amikor határt érnek a mágneses erővonalak, azok elhajolnak. Egy határon átmenő hurokra a gauss.törvényt nézve azt kapjuk:
+\begin{gather*}
+[\vec{H_1}]_t = [\vec{H_2}]_t 
+\end{gather*}
+A faraday-törvény nézve pedig:
+\begin{gather*}
+[\vec{B_1}]_n = [\vec{B_2}]_n
+\end{gather*}
+Ha a két egyenletet elosztjuk egymással, akkor megkapjuk:
+\begin{gather*}
+\frac{[H_1]_t}{[B_1]_n} = \frac{[H_2]_t}{[B_2]_n}
+\end{gather*}
+Felhasználva, hogy $B/\mu_0 = H$, és azt hogy melyik komponens a térerősségvektor melyik szögfüggvényének felel meg, ha határátmenetről beszélünk, akkor megkapjuk az alábbi összefüggést:
+\begin{gather*}
+\frac{\tan \alpha_1}{\tan \alpha_2} = \frac{\mu_1}{\mu_2}
+\end{gather*}
+Mágneses árnyékolás ugyan nincs, de ezzel lehet kvázi árnyékolni, ha nagy a kontraszt a permeabilitások között.
+\subsection{Mágneses terek}
+Nem fogom túltárgyalni egyiket sem, ugyanazt kell csinálni mint elektromosságban, csak nem felületi-térfogati integrálok vannak hanem vonal-felületi.
+\subsubsection{B-re merőleges rés}
+\begin{gather*}
+B=B_0
+\end{gather*}
+\subsubsection{B-vel párhuzamos tér}
+\begin{gather*}
+B=B_0 \frac{\mu_0}{\mu}
+\end{gather*}
+\subsubsection{Gömb rés}
+\begin{gather*}
+B=B_0 \frac{3\mu_0}{2\mu_0+\mu}
+\end{gather*}
+\subsubsection{Toroid-tekercs}
+Gauss-törvényből
+\begin{gather*}
+\oint \vec{H} d\vec{r} = I \\
+H \cdot 2\pi r = NI \\
+B=\frac{\mu}{2\pi} \frac{NI}{r}
+\end{gather*}
+\subsubsection{Szakadt gyűrűre tekercselt vezeték}
+Ha b a rés hossza, l a tekercs hossza, akkor
+\begin{gather*}
+Hl + H_0 b = NI \\
+B\left( \frac{l}{\mu} + \frac{b}{\mu_0} \right) = NI \\
+B = \frac{NI}{\frac{l}{\mu} + \frac{b}{\mu_0}}
+\end{gather*}
+\subsubsection{Tekercs vasmaggal}
+\begin{gather*}
+\Phi_o = \Phi_1 + \Phi_2 \\
+B_0 A = B_1 A_1 + B_2 A_2 \\
+B_0 l + B_2 l_" = \mu_0 N I \\
+B_0 l + B_1 l_1 = \mu_0 N I \\
+\end{gather*}
+\newpage
+\section{Indukció}
+\subsection{Mozgási indukció}
+Ha egy B tér merőleges egy keret felületére és egy vezetőszál mozog befele v sebességgel,l akkor:
+\begin{gather*}
+W=F_L l = QvBl = QU \Rightarrow U=Blv \\
+U_i = -\frac{d}{dt} \Phi = -\frac{d}{dt}(Blx) = Blv
+\end{gather*}
+\subsection{Nyugalmi indukció}
+Ebből a felállásból látható, hogy a mozgás  által feszültség indukálódott. Ha veszünk egy általános hurkot amiben egy B tér van és arra nézzük a potenciált:
+\begin{gather*}
+\varepsilon_{indukalt} = -\frac{d\Phi}{dt} \\
+\oint_{G(t)} \vec{E} d\vec{l} = \varepsilon_{ind} = -\frac{d\Phi}{dt} \\
+\oint  \vec{E} d\vec{r} = -\frac{d}{dt} \iint \vec{B} d\vec{A} \\
+\iint \nabla \times \vec{E} dA = - \iint \frac{\partial}{\partial t} \vec{B} d\vec{A} \hspace{30pt} \forall \texttt{ felületre} \\
+\nabla \times \vec{E} = -\frac{\partial \vec{B}}{\partial t}
+\end{gather*}
+\subsubsection{Forgó tárcsa}
+Ha egy tárcsa forog mágneses tében és egy voltmérőt kapcsolunk rá, akkor feszültséget tudunk mértni de elvileg nem kellenne. Ebben a tárcsában a feszültség útfüggő lesz szóval nem lehet potenciált definiálni rajta, csak adott két pont között. Ekkor figyelnni kell arra, milyen úton mozog a töltés.
+\subsubsection{Önindukció}
+Ha egy vezetőben áramo folyik akkor a ozgó töltések mágneses teret indukálnak, de mivel megnövekstik a mágneses indukcióvektor, a fluxus is változik, de a fluxusváltozás pedig fezsültséget indukál, azaz több áram fog folyni a vezetőben. 
+\begin{gather*}
+\Phi_B = L \cdot I \\
+U_{ind} = -\frac{dI}{dt} \cdot L 
+\end{gather*}
+\subsection{Szolenoid tekercs}
+\begin{gather*}
+B=\mu_0 \frac{NI}{l} \Rightarrow r^2\pi \frac{\mu_0NI}{l} = \Phi \\
+\Phi_N = \frac{AN^2\mu I}{l} \Rightarrow L=\Phi_N/I = \frac{AN\mu}{l}
+\end{gather*}
+\subsection{Vasmagos tekercs}
+Négyzet keresztmetszetű toroidális vasmag, aminek szélessége d, rá van tekercselve N menetszámú l hosszú tekercs. 
+\begin{gather*}
+\nabla \times \vec{H} = \vec{j} \Rightarrow Hl=NI \\
+B=\frac{\mu N I}{l} \Rightarrow \Phi_N = \frac{\mu N^2 I d}{l} \\
+L=A_L N^2
+\end{gather*}
+\subsubsection{Telep, ellenállás és tekercs}
+Ha összekötünk egy telepet és egy tekercset, akkor kapunk egy olyan elrendetzést, amiben bekötés után ez az egyenlet áll fent:
+\begin{gather*}
+RI=U_0+U_{ind} = U_0-\frac{dI}{dt}L
+\end{gather*} 
+Ami egy inhomogén differenciálegyenlet, megoldása pedig:
+\begin{gather*}
+I(t) = \frac{U_0}{R} \left( 1-e^{-\frac{R}{L}t} \right)
+\end{gather*}
+Ez is kvázi-integráló áramkör, mint elektromosságban
+\subsection{Tekercs energiája}
+MIvel tudjuk, hogy $U=L\dot{I}$, és azt, hogy a potenciál idő szerinti integrálja megadja az energiát, ebből:
+\begin{gather*}
+E_{energia} = \int_{0}^t dt U\cdot I = \int_0^t dt L \frac{dI}{dt} I = \int_{I=0}^{I} dI LI = \frac{1}{2} LI^2
+\end{gather*}
+Ahol felhasználtuk az indukció onindukciós együtthatójú definícióját és a láncszabályt. Ezután kis átalakításokkal:
+\begin{gather*}
+\frac{1}{2}LI^2 = \frac{1}{2} \frac{\mu N^2 A}{l} I^2 = \frac{1}{2} \frac{\mu N I }{l} \frac{N I }{l} A l = \frac{1}{2} BHAl = \frac{1}{2}BHV \Rightarrow w = \frac{1}{2} \vec{B} \cdot \vec{H}
+\end{gather*}
+Ha behelyettesítjük a szolenoid önindukciós együtthatóját, majd észrevesszük a térerősség és indukcióvektorok definícióját szolenoidra és végül osztunk a szolenoidba foglalt térfogattal. Továbbá vákuumra és közegre is felírhatjuk. Vákuumra:
+\begin{gather*}
+w_{vakuum}=\frac{1}{2}\mu_0 H^2 = \frac{1}{2} \frac{B^2}{\mu_0}
+\end{gather*}
+És közegre:
+\begin{gather*}
+w_{kozeg}=\frac{1}{2} \vec{B} \left( \frac{\vec{B}}{\mu_0} - \vec{M}\right) = \frac{1}{2} \frac{B^2}{\mu_0} - \frac{1}{2} \vec{B} \vec{H}
+\end{gather*}
+Ahol az első tag a vákuumjárulék, a második pedig a közegjárulék.
+\subsection{Kölcsönös Indukció}
+Mivel a mágneses tér kiterjedt, kettő akármilyen hurok egymásra is induktív hatással van, ha az egyikben folyik áram:
+\begin{gather*}
+\Phi_2 = L_{21} I_1 \\
+U_2 = L_{21}\frac{dI_1}{dt} \\
+U_1 = L_1 \dot{I_1} + L_{12} \dot{I_2} \\
+U_2 = L_{21}\dot{I_1} + L_2 \dot{I_2} \\
+L_{12} = L_{21}
+\end{gather*}
+Először bekapcsolok $I_1$ áramok az első hurokban. Ennek eredményeképpen lesz $E=1/2 L_1 I_1^2$ energiája a huroknak. Majd a második hurokban az áramot nulláról felnövelem $I_2$-re :
+\begin{gather*}
+E=\frac{1}{2} L_1 I_1^2 + \int_0^t d\tilde{t} I_2(\tilde{t}) U_2
+\end{gather*} 
+Az első hurok fluxusa fix lesz tehát:
+\begin{gather*}
+E=\frac{1}{2} L_1 I_1^2 + \int_0^t d\tilde{t} I_2 L_2 \dot{I}_2 + \int_0^t d\tilde{t} I_1 L_{12} \dot{I_2}
+\end{gather*}
+Azaz:
+\begin{gather*}
+\frac{1}{2}L_1 I_1^2 + \frac{1}{2}L_2 I_2^2 + L_{12}I_1 I_2
+\end{gather*}
+De ezt az egész játékot firdítva is el lehet játszani, amiben cask az indexek leznke megcserélve, de mivel ez csak az $L_{12} \Rightarrow L_{21}$ esetében számít, ezért ez  akettő érték meg kell, hogy egyezzen.
+Továbbá az ampére törvényből:
+\begin{gather*}
+U_1 = -\frac{d\Phi_1}{dt} = -\frac{d}{dt} \iint \vec{B} d\vec{F}_1 = -\frac{d}{dt} \oint \vec{A} d\vec{l}_1 
+\end{gather*}
+\begin{gather*}
+L_{12}=L_{21}=M=\frac{\mu_0}{4\pi} \oint d\vec{l_1} \oint d\vec{l_2} \frac{1}{|\vec{l_2} - \vec{l_1}|}
+\end{gather*} 
+\subsubsection{Szoros csatolsás}
+Ha egy tekercs egy másikkal azonos vasmagon van, akkor
+\begin{gather*}
+L_1 = N_1^2 A_L \hspace{30pt} L_2 = N_2^2 A_L
+\end{gather*}
+Ekkor:
+\begin{gather*}
+M=N_1N_2A_L = \sqrt{L_1L_2}
+\end{gather*}
+\subsubsection{Soros kapcsolás}
+\begin{gather*}
+U_1 = L_1 \dot{I} \pm M \dot{I} \\
+U_2 = L_2 \dot{I} \pm M \dot{I} \\
+U_1+U_2 = (L_1 +L_2 \pm 2M)\dot{I}
+\end{gather*}
+\subsubsection{Párhuzamos kapcsolás}
+\begin{gather*}
+\frac{U}{L_{eff}} = \dot{I_1} + \dot{I_2} = \frac{U}{L_1} + \frac{U}{L_2} \\
+L_eff = \frac{L_1L_2-M^2}{L_1+L_2 \pm 2M}
+\end{gather*}
+\newpage
+\section{Váltóáramú hálózatok}
+\subsection{Váltakozó áram}
+Ha van egy olyan áramforrásunk ami időfüggő, mégpedig $U=U_0 \cos(\omega t)$ módjára, ahol $\omega$ és $U_0$ konstansok, akkor például cosinusosan váltakozó áramról beszélünk. Minden időfüggő feszültség és/vagy áramgenerátor váltaküzóáramot vagy váltóáramot eredményez. 
+\subsubsection{Áramforrás és ellenállás}
+Tegyük fel, hogy van egy ideális áramforrásunk és egy ellenállásunk az áramkörben, úgy, hogy a vezetékek is ideálisak. Legyen a váltakozó áramunk $U_0 \cos(\omega t)$. Ekkor az ellenálláson átfolyó áram $\frac{U_0}{R}\cos(\omega t)$. Általánosságban szinuszos/cosinusos áramoknál lehet ún. impedanciát definiálni, maelyet majd később komplex mennyiséggel jellemzünk, mint $\frac{U_r(t)}{I_r(t)} = Z = R$. 
+\begin{gather*}
+P=U_R I_R = \frac{U_R^2}{R} \cos(\omega t) \Rightarrow \langle P \rangle = \frac{1}{2} \frac{U_0^2}{R} \\
+U_{eff} = \frac{U_0}{\sqrt{2}}
+\end{gather*}
+\subsubsection{Áramforrás és tekercs}
+Minden hasonló módon megy csak a tekercsre vonatkozó egyenleteket kell használni. 
+\begin{gather*}
+U_L = U_0 \cos{\omega t}  = L\dot{I}\\
+I_L = \frac{U_0}{L \omega} \sin(\omega t)
+\end{gather*} 
+Ha így konstruáljuk meg az impedanciát, akkor nem kapunk egy időfüggetlen mennyiséget, hanem az $\omega t$ tangensét kapjuk. ez nem jó, tehát más eszközt kell használnunk. Azonos frekvenciájú hullámokat akarunk összeraki, csak az egyik cosinus a m ásik sinus
+\begin{gather*}
+A_1 \cos(\omega t + \varphi_0) + A_2 \cos(\omega t + \varphi_2) \Rightarrow\\
+A_1 e^{i(\omega t + \varphi_1)} + A_2 e^{i(\omega t + \varphi_2)} = A e^{\omega t + \varphi}\\ 
+A_1 e^{i\varphi_1} + A_2 e^{i\varphi_2} = A e^{i\varphi} = \tilde{A} \\
+\tilde{I}(t) = \frac{U_0}{L\omega} e^{-i\frac{\pi}{2}} = U/iL\omega \\
+Z = \frac{\tilde{U}}{\tilde{I}} = \frac{U_0}{\frac{U_0}{iL\omega}} = iL\omega
+\end{gather*}
+\subsubsection{Áramforrás és kondenzátor}
+Ugyanaz a váltakozó cosinusos áramról van szó. 
+\begin{gather*}
+Q=CU_0 \cos{\omega t} \\
+I_c = -\omega C U_0 \cos(\omega t) \Rightarrow \tilde{I} = C\omega U_0 e^{i\frac{\pi}{2}} \\
+Z=\frac{\tilde{U}}{\tilde{I}} = \frac{1}{iC\omega}
+\end{gather*}
+És mind az L, midn a C körnek a teljesítménye nulla , mert a feszülségük cosinusos, áramerősségük sinusos, azoknak a szorzatuk átlaga pedig 0.
+\subsubsection{RC kör}
+\begin{gather*}
+Z=R+\frac{1}{iC\omega} \Rightarrow
+\frac{U_0}{1+R^2 C^2 \omega^2}e^{i \arctan \frac{1}{-RC\omega}}
+\end{gather*}
+Ez az aluláteresztő szűrő. (kép) 
+\subsubsection{Rezgőkör}
+Ez egy párhuzamosan kötött tekercs és kondenzátor.
+\begin{gather*}
+Z=\frac{Z_L Z_C}{Z_L +Z_C} \Rightarrow \texttt{ ha } LC\omega = 1/\omega \Rightarrow \omega = \frac{1}{\sqrt{LC}}
+\end{gather*}
+Akkor rezeg a sajátfrekvenciáján.
+\subsection{RLC-körök}
+KOndenzátor és tekercs párhuzamosan kapcsolva. Ekkor a Kirchhoff-törvény ártelmében $U_L + U_C = 0$, azaz
+
+\begin{gather*}
+\frac{Q(t)}{C} + L\dot{I}(t) = 0 \hspace{30pt} /(\frac{d}{dt})\\ 
+\frac{I(t)}{C} + L\ddot{I}(t) = 0
+\end{gather*} Ez pedig a karmonikus oszcillátor egyenlete, azaz a megoldása a sinus/cosinus hullám.
+\begin{gather*}
+U_C(t) = \frac{1}{C} I_0 \cos(\omega t) \hspace{30pt} Q(t) = \frac{I_0}{\omega} \sin(\omega t) \\
+E_{rendszer} = \frac{Q^2}{2C} + \frac{1}{2}LI^2 = \frac{I_0^2 L }{2}
+\end{gather*}
+Ha egy ilywen kört földelve párhuzamosan egy ellenállásra bekötünk, sáváteresztő áramkört kapunk.
+\subsection{Lecher-vonal}
+Ugyan előadáson nem volt róla szó de a tételben benne van. Ez egy olyan eszköz, ami két fémrúd antenna között egy összeköttétés. Ennek a távolságának állításával elektromágneses hullámok hullámhosszát lehet mérni.
+\newpage
+\section{Indukció és az elektromágnesesség technikai alkalmazásai}
+\subsection{Elektromos motor}
+tegyünk egy tekercset egy permanens kör alakú mágnes belsejébbe, majd vezessünk egyenáramot át rajta, 3egyenármú motort kapunk. A permanens mágnest kicserélhetjük welektromágnessel, és három ágat adhatunk a bennelevő tekercsn nek, ez még mindig egyenáramú motor, de elektromgásnessel. A másodiknál például a föld mágneses tere elég arra, hogy forgásba kezdjen.
+\subsubsection{Egyenáramú generátor}
+Ha egy ilyen motort forgatunk, akkor a mágneses tér változása áramot fog inddukálni, lehet generátorként használni, de ez még nem egyenáramot ad, ehhez egyenirányító áramkör kell. \\
+Egyfázisú a generátor, ha csupán mágneses térben egy keretet forgatunk. Ekkor $\Phi = BA \cos(\omega t)$, ekkor $U_i = BA\omega \sin(\omega t) $ 
+\subsubsection{Háromfázisú villanymotor}
+Ha a stator hat ággal rendelkeziik, ami kettő-kettő-kettő tekercsként van bekötve és ebben forog a kommutátor, akkor háromfázisú a villanymotor. Ekkor a három fázis egyenlete: 
+\begin{gather*}
+U_1(t) = U_0 \cos(\omega t)\\
+U_2 (t) = U_0 \cos(\omega t + \frac{2\pi}{3}) \\
+U_3 (t) = U_0 \cos(\omega t + \frac{4\pi}{3}) \\
+\end{gather*} 
+Ekkor a három fázis összege értelemszerűen nulla, mert harmad 2pi fázissal vannak eltolva. De ha kettőt kötünk be akkor:
+\begin{gather*}
+U = U_0 e^{i\omega t } - U_0 e^{i\omega t + i\frac{2\pi}{3}} = U_0 e^{i\omega t} (1-e^{i \frac{2\pi}{3}}) \\
+= U_0 e^{i\omega t} \left(1-\left(-\frac{1}{2} + \frac{\sqrt{3}}{2}i \right)\right) \\
+|U| = \sqrt{3} U_0 \approx 398 V
+\end{gather*}
+\subsubsection{Transzformátor}
+Ha kettő tekercset egy közös magera tekercselünk, akkor transzformátorról beszélünk. Az egyenleteit a kirchhoff törvények alapján kaphatjuk meg. Kapcsoljunk $U_0$ áraforrást az eslő tekercsre és egy R ellenállást a kettesre.
+\begin{gather*}
+U_0 = L_1 \dot{I}_1 - M \dot{I}_2 \\
+0=RI_2 +L_2\dot{I}_2 - M\dot{I}_1 \\
+U_0 = L_1(i\omega)I_1-M(i\omega) I_2 \\
+§=RI_2 + L_2(i\omega) I_2 - M(i\omega) I_2 \\
+I_2 = \frac{M(i\omega)I_1}{R+L_2 (i\omega)} \\ \texttt{ha pedig R tart nullához} \\
+I_2 = I_1 M/L_2 = \frac{N_1}{N_2} I_1
+\end{gather*}
+Ebből ki lehet számolni az ellenálláson eső feszültséget $U_2 = M/L_1 U_0 = N_2/N_1 U_0$. Ha a második tekercse eső feszültség megnő az ott folyó áramerősség lecsökken. A teljesítményt ilyenkor $I^2 \cdot R$ módon számoljuk, nem fezsültséggel, mert az $U_2$ feszültségmek csak töredéke esik a vezetékre. Nem érdemes egyenáramra kötni a transzformátort értelemszerűen. A háromfázisú áramnál mindhárom fázist kell transformálnni. Egy vasmagra három tekercs kell. \\
+A távvezetékekhez feltranszformálják magasra az áramot és a végén, a házakbavezetéskor visszatranszformálják, hoyg minimális legyen a Joule-hő.
+\newpage
+\section{Maxwell-egyenletek, elektromágneses mező energia és impulzus viszonyai}
+\subsection{Maxwell-egyenletek}
+Teljesek-e a maxwell-egyenleteink? Nem teljesen. vegyük az alábbi példát: Legyen az áramkörünkben egyen-áramforrás, kondenzátor és ellenállás. Nézzük meg a mágneses térerősségvektort a kábel egy adott szeletén, olyan felületre ami merőleges a kábelre és minimális. Majd vegyünk egy olyan azonos határú zsákfelületet, amiben a kondenzátor egyik fegyverzete benne van. Az előbbiben a folyó áram áramerőssége I egység, az utobbiban nulla. Na de akkor nem érvényes a "bármilyen zsákfelület" kijelentés. Ezt oldjuk meg az áramsűrűség és kontinuitás-egyenletekkel:
+\begin{gather*}
+\mathrm{div} (\mathrm{rot} (\vec{H}) ) = \mathrm{div} \vec{j} = 0 \\
+\mathrm{div} \vec{j}  + \frac{\partial \rho}{\partial t} = 0
+\end{gather*}
+De ez nem lesz elég, mert a kondenzátoron gyűlnek a töltések, tehát valami még hiányzik az egyenletekből.
+\begin{gather*}
+\nabla \times \vec{H} = \vec{j} + \frac{\partial }{\partial t} \vec{D} \\
+\Rightarrow \nabla \times \vec{H} = I+\iint \frac{\partial}{\partial t}\vec{D} d\vec{A} \\
+\iint \nabla \times \vec{H} d\vec{A} = \iint \vec{j} d\vec{A} + \iint \frac{\partial \vec{D}}{\partial t} d\vec{A} \\
+\nabla (\nabla \times \vec{H}) = \nabla \vec{j} +\nabla \dot{\vec{D}} \\
+0= \nabla \vec{j} + \frac{d}{dt} (\nabla \vec{D}) = \nabla \vec{j} + \frac{\partial \rho}{\partial t} \Rightarrow I+ \frac{d}{dt} \iint \vec{D} d\vec{A}
+\end{gather*}
+Tehát a kontinnuitási egyenlet tulajdonképpen benne van a Maxwell-egyenletkben, továbbá az utolsó egyenletben az integrálos tag a bezárt töltés és így kijön az össz áram.
+\subsection{Összeföglalás}
+Összefoglalva az összes egyenletünket: 
+
+\renewcommand{\arraystretch}{2}
+\begin{center}
+\begin{tabular}{|cc|}
+\hline
+\multicolumn{1}{|c|}{$\oiint \vec{D} d\vec{A} = Q_{be}$} & $\nabla \cdot \vec{D} = \rho$ \\
+\multicolumn{1}{|c|}{$\oint \vec{E} d\vec{r} = -\frac{d}{dt} \iint \vec{B} d\vec{A}$} & $\nabla \times \vec{E} = -\partial_t \vec{B}$ \\
+\multicolumn{1}{|c|}{$\oiint \vec{B} d\vec{A} = 0$} & $\nabla \cdot \vec{B} = 0$ \\
+\multicolumn{1}{|c|}{$\oint \vec{H} d\vec{r} = I+\frac{d}{dt} \iint \vec{D} d\vec{A}$} & \ \ \ $\nabla \times \vec{H} = \vec{j} + \partial_t \vec{D}$ \ \ \\ \hline
+\multicolumn{1}{|c|}{$\vec{D} = \varepsilon \vec{E}$}                                 & \multicolumn{1}{c|}{$\vec{B} = \mu \vec{H}$} \\ \hline
+\multicolumn{1}{|c|}{$\vec{F}_L = Q( \vec{E} + \vec{v} \times \vec{B})$}                                 & \multicolumn{1}{c|}{$\vec{f} = \rho \vec{E} + \vec{j} \times \vec{B}$} \\ \hline
+\multicolumn{2}{|c|}{$\vec{j} = \sigma \vec{E}$}      \\ \hline
+\end{tabular}
+\end{center}
+Sorrendben az elnevezéseik:
+\begin{enumerate}
+\item Gauss-törvény
+\item Faraday-Lenz-törvény 
+\item Mágneses Gauss-törvény 
+\item Ampére-Maxwell-Oersted-törvény
+\end{enumerate}
+\subsection{Energiamegmaradás}
+\begin{gather*}
+P= \vec{F} \vec{v} = Q(\vec{E} + \vec{v} \times \vec{B})\vec{v} = Q\vec{E}\vec{v} \\
+\frac{P}{V} = \frac{NQEv}{V} = \vec{j} \vec{E} \\
+\frac{\partial }{\partial t} w + \nabla \vec{\rho} = -\vec{j} \vec{E}
+\end{gather*}
+Ahol az első egyenletben szimplán a teljesítménny definíciójából és a keresztszorzás definíciójából indultunk ki. A harmadimban pedig a $w$ az energiasűrűséget jelöli, $\vec{\rho}$ pedig az energiáramsűrűséget. Továbbá:
+\begin{gather*}
+-\vec{j}\vec{E} = (\nabla \times \vec{H} - \partial_t \vec{D}) \vec{E} \\
+\vec{H} (\nabla \times \vec{E}) - \vec{E} (\nabla \times \vec{H}) = \nabla (\vec{E} \times \vec{H}) \\
+\nabla (\vec{E} \times \vec{H}) - \vec{H} (\nabla \times \vec{E}) + \partial_t \vec{D} \vec{E}\\
+=\nabla (\vec{E} \times \vec{H}) + \vec{H} \vec{B} + \partial_t \vec{D} \vec{E} = \nabla (\vec{E} \times \vec{H}) + \frac{\partial }{\partial t} \left( \frac{1}{2}\varepsilon_0 E^2 + \frac{1}{2} \mu_0 H^2 \right)
+\end{gather*}
+Az utolsó pedig már felismerhetően a kontinuitási egyenlet, amelyben az egyik mennyiség, amely az időben változó tag a $\frac{1}{2}\varepsilon_0 E^2 + \frac{1}{2} \mu_0 H^2$ amelyet $w$-vel jelölünk és energiasűrűségnek nevezünnk, a másik mennyiség pedig $\vec{E} \times \vec{H}$ amelyet pedig $\vec{S}$-sel és Poynting-vektornak neveznek.
+\subsection{R-C körben áramló energia}
+\subsubsection{Kondenzátor kisülése}
+\begin{gather*}
+\frac{\partial w}{\partial t} + \mathrm{div} \vec{S} = -\vec{j} \vec{E} \\
+\frac{\partial (w_E + w_B)}{\partial t} + \nabla \cdot (\vec{E}\times \vec{H} + \nabla \times \dots)
+\end{gather*}
+Itt ebben a kifejezéseben a poynting-vektor még akármilyen vektor rotációjjában különbözhet, mert annaka divergenxiája nulla lenne. Vegyünk egy kondenzátort egy ellenállással sorbakapcsolva. A kondenzátor lemezei közötti Poynting vektorra vagyunk kíváncsiak.
+\begin{gather*}
+\nabla \times \vec{H} = \vec{j} + \frac{\partial \vec{D}}{\partial t} \Rightarrow \oint \vec{H} d\vec{r} = I+\frac{d}{dt} \iint \vec{D} d\vec{A} \\
+H \cdot 2\pi R = 0 + \frac{d}{dt} \iint \vec{D} d\vec{A} \\
+H \cdot 2\pi R = \varepsilon_0 \frac{\partial \vec{E}}{\partial t} R^2 \pi = \frac{R}{2}\varepsilon_0 \dot{E} \\
+\end{gather*}
+Kaptunk egy összefüggést a mágneses térerősségre és az elektromos tér deriváltjára. Ezután kiszámoljuk az energia időbeli deriváltját:
+\begin{gather*}
+P = \frac{dE_{energia}}{dt} = \frac{d}{dt} \left( \varepsilon_0 \cdot \frac{E^2}{2} \right) \cdot \left[ R^2 \pi d \right] = \varepsilon_0 E \dot{E} R^2 \pi d
+\end{gather*}
+Ahol a () zárójelekben levő rész az energiasűrűség, a [] zárójelben levő rész pedig aa térfogat, aminek a szorzata kiadja az energiát. A kettőt összevetve
+\begin{gather*}
+\dot{E}_{energia} = EH2R\pi d = |S| \cdot A \cdot d
+\end{gather*}
+A Poynting-vektor radiálisan mutat a lemezek között kifele
+\subsubsection{Vezetőhuzal - avagy ellenállás}
+Közelítésképpen l hosszúságú huzalként fogjuk modellezni az  ellenállást, amelyben I áram folyik.
+\begin{gather*}
+U=E \cdot l \texttt{   és   }  H = \frac{I}{2\pi r} \\
+P=I^2 R =UI = El \cdot H \cdot 2\pi R = EH \ 2\pi R l = |S| \cdot A \cdot l
+\end{gather*}
+A Poynting-vektor iránya pedig itt is sugárirányú. 
+\\
+\\
+Ebből a kettő levezetésből azt szűrhetjük le, hogy az energia nem a vezetékekben "áramlik", hanem azonkon kívül. Bár valójában nem ennyire egyszerű a helyzet, mert nem teljesen az enregia áramlását jelenti a poynting vektor, uyanis ha elképszelünk egy mágneses dipólust és egy elektromos töltést stacionáriusan, itt is van nem nulla Poynting vektor, de az energia meg nem éppen "áramlik".
+\subsection{Impulzus-megmaradás}
+Felírható (nem éertem honnan és hogyan), a kontinuitási egyenlet analógiájára (az első egyenlet csak szimplán a Lorentz-erő) :
+\begin{gather*}
+\vec{f} = \rho \vec{E} + \vec{j} \times \vec{B} \\
+\frac{\partial \vec{g}}{\partial t} + \nabla \cdot \hat{\sigma} = -\vec{f}
+\end{gather*}
+itt g az impulzussűrűség. $\vec{g} = \vec{D} \times \vec{B} = \epsilon_0 \vec{E} \times \mu_0 \vec{H} = \frac{\vec{S}}{c^2}$
+\subsection{Impulzusmomentum-megamaradás}
+Most, ahogyan mechanikában is így szoktuk, szorozzuk be a helyvektorral mindkét oldalt. 
+\begin{gather*}
+\frac{\partial}{\partial t} (\vec{r} \times \vec{g}) + \vec{r} \times (\nabla \cdot \hat{\sigma}) = -\vec{r} \times \vec{f} \\
+\end{gather*}
+A kísérlet pedig egy felfüggesztett fém hengerpalást, amiben egy fém mag van, ami kondenzátorként viselkedik és egy függőleges mágneses térrel van ellátva. Ekkor a palást el forg fordulni. Kezdeti állapotban $\vec{r} \times \vec {D} \times \vec{B}$ nem nulla, de a végén $\vec{r} \times \vec{g} $ pedig igen.tehát $\vec{r} \times \vec{f}$ forgmatónyomaték lett gyakorolva a rendszerre. Na de ebből a levezetésből lűtszólag munka befektetése nélül forgatónyomatékot generált a mágneses és elektromos tér. Na de mégsem, mert ehhez mind az időbeli változása az impulzusmomentumsűrűségnek szükséges. Ezt két módon lehet előidétzni:
+\begin{itemize}
+\item ha $\vec{B}$-t kapcsoljuk ki, akkor $\frac{\partial \Phi}{\partial t}$ nem lesz nulla, áram indukálódik, amitől forog a test.
+\item ha $\vec{E}$-t kapcsoljuk ki, akkor pedig áram folyásának hatására Lorentz erő lép fel, ami elforgatja a testet.
+\end{itemize}
+Másik kísérletet is ki lehet találni, mondjuk egy kisautóra helyezett tekercs, amiben egy kondenzátor van. Ez hasonlóan kellene, hogy működjön, de nem így működik. Ennek magyarázata a relativitáselméletben rejlik.
+\newpage
+\section{Elektromágneses Hullámok I (vákuum)}
+\subsection{Alapfeltevések}
+Mostmár megalkottuk az egész elektromosság alapjául szolgáló differenciálegyenletrendszert: A Maxwell-egyenleteket. Ez tartalmaz tulajdonképpen 12 darab egymásbaágyazott differenciálegyenletet (Négy törvény, mindegyik 3 dimenziós vektorokat tartalmaz.) De mégis egy-két okos trükkel lehet megoldásokat találni. Először írjuk fel az egyenleteket csak két változóval (Most a térerősségvektorokkal) és úgy, hogy se töltés se áram ne legyen jelen (unalmas, mi?)
+\begin{gather*}
+\nabla \vec{E}= 0 \hspace{70pt} \ \ \nabla \vec{H} = 0 \\
+\nabla \times \vec{E} = -\mu \partial_t \vec{H} \hspace{50pt} \nabla \times \vec{H} = \varepsilon \partial_t \vec{E}
+\end{gather*} 
+\subsection{Triviális megoldás}
+\begin{align*}
+\vec{E} = 0 \hspace{50pt} \vec{H} = 0
+\end{align*}
+\subsection{Nemtriviális megoldás}
+Legyen az ansatz $\vec{E} = \vec{E}_0 \cos(\omega t - k z)$, egy, a z irányba terjedő síkhullám. Szépen menjünk sorba az egyenleteken:
+\begin{align*}
+\nabla \vec{E} = 0? \ : \ \partial_z E_z = \partial_z E_{0z} \cos(\omega t - kz) + E_{0z} \partial_z \cos(\omega t  -kz) 
+\end{align*}
+Ennek minden pillanatban igaznak kell lennie, ami azt jelenti, hogy az $E_{0z}$ tagnak kell nullának lennie, azaz a hullámunk csak x-y síkban lehet nem nulla, ami azt jelenti, hogy az elektromos tér transzverzális hullámot alkot(hat). Ekkor van egy szabadságunk az $E_0$ vektorra, ez tulajdonképpen a kezdőfázist mondja majd meg, de az egyszerűség kedvéért legyen ez $(E_0, 0, 0)$. \\
+Térjünk át a második egyenletre:
+\begin{align*}
+\nabla \times \vec{E} = -\mu \partial_t \vec{H}? \ : \
+\begin{pmatrix}
+\partial_y E_z - \partial_z E_y \\
+\partial_z E_x - \partial_x E_z \\
+\partial_x E_y - \partial_y E_x 
+\end{pmatrix}  = -\mu 
+\begin{pmatrix}
+\dot{H}_x \\ \dot{H}_y  \\ \dot{H}_z = 
+\end{pmatrix}=
+\begin{pmatrix}
+0 \\ \partial_z E_x \\ 0
+\end{pmatrix} = -\mu \dot{H}_y
+\end{align*}
+Ebből pedig az alábbi összefüggés fog kijönni: $E_0 k \sin(\omega t - k z) = -\mu \dot{H}_y$, azaz 
+\begin{align*}
+\dot{H}_y = -\frac{E_0 k }{\mu} \sin(\omega  t - kz) \Rightarrow H_y = \frac{E_0 k }{\omega \mu} \cos(\omega t - kz)
+\end{align*}
+Továbbá mivel az x és z komponense a mágneses térerősségvektor deriváltjának nulla, ebből következik, hogy az általunk választott önkényes konstans. Válasszuk most ezeket nullának. Ekkor
+\begin{align*}
+\vec{E}(t,\vec{r}) = \begin{pmatrix}
+E_0 \cos(\omega t -kz) \\ 0 \\ 0
+\end{pmatrix} \hspace{50pt}
+\vec{H}(t,\vec{r}) = \begin{pmatrix}
+0 \\ \frac{E_0 k}{\mu \omega} \cos(\omega t -kz) \\ 0
+\end{pmatrix}
+\end{align*}
+Ebből az alábbiakat szűrhetjük le: A két vektor egymásra merőleges, mindkettő transzverzális hullámként terjed, Az amplitúdójuk pedig nem független egymástól. 
+\begin{gather*}
+\frac{E_0 k}{\mu \omega } = H_0 \Rightarrow \frac{k}{\omega} E = B_0
+\end{gather*}
+De hullámtanból tudjuk, hogy a körfrekvencia és hullámszám hányadosa a csoportsebesség, ezért:
+\begin{gather*}
+E_0=cB_0
+\end{gather*}
+Ahol a c a fénysebesség (mint kiderül :D ) \\
+A maradék két Maxwell-egyenletből pedig:
+\begin{gather*}
+\nabla \times \vec{H} = \varepsilon \frac{\partial \vec{E}}{\partial t} \\
+-\partial_z H_y = \varepsilon \dot{\vec{E}} = H_0 k \sin(k z - \omega t) = \varepsilon \omega E_0 \sin(kz-\omega t) \texttt{   de   } H_0 = \frac{E_0 \varepsilon}{k}\omega \\
+\frac{k}{\mu \omega} = \frac{\varepsilon \omega}{k} \Rightarrow \frac{k}{\omega} = \sqrt{\varepsilon \mu} \Rightarrow \omega = ck
+\end{gather*}
+Hullámtanból pedig tudjuk:
+\begin{gather*}
+c_f = \frac{\omega}{k} = c \\
+c_{cs} = \frac{d\omega}{dk} = c
+\end{gather*}
+Tehát vákuumban nincsen deiszperziója az elektromágneses hullámoknak. Tehát a fénysebesség: $\frac{1}{\sqrt{\varepsilon \mu}}$. Ha közegre nézzük, akkor pedig be kell szorozni ezt az értéket $\frac{1}{\sqrt{\varepsilon_0 \mu_0}}$-val is, ezt pedig $1/n$-nel jelöljük és ez a törésmutató reciproka. 
+\begin{gather*}
+\sqrt{\varepsilon_0 \mu_0} = n
+\end{gather*}
+Ennek a hullámnak a Poynting-vektora:
+\begin{gather*}
+\vec{S} = \vec{E} \times \vec{H} = \begin{pmatrix}
+0 \\ 0 \\ E_0 H_0 \cos^2(kz-\omega t)
+\end{pmatrix} \\
+S_z = \frac{kE_0^2}{\mu \omega} \cos^2(kz-\omega t) = \frac{E_0^2}{c\omega} \cos^2(k z - \omega t) \Rightarrow \langle S_z \rangle = \frac{E_0^2}{2c\omega} 
+\end{gather*}
+Ennek a mértékegysége $[\frac{W}{m^2}] = [\frac{J}{m^2 s}]$, ami az intenzitás egyébként. $I=|\langle S \rangle|$ . \\
+Impulzusa pedig az alábbi:
+\begin{gather*}
+\vec{g} = \vec{D} \times \vec{B} = \varepsilon \mu \vec{S} \Rightarrow I_p = \frac{\varepsilon E_0^2}{2c} \\
+\frac{I}{I_p} = \frac{1}{\varepsilon \mu} = \frac{1}{c^2}
+\end{gather*} 
+Az impulzusváltozást kiszámoljuk:
+\begin{gather*}
+\Delta p_{imp} = A \cdot \Delta l \cdot \langle g_z \rangle \\
+p =  \frac{F}{A} = \frac{\Delta p}{\Delta t \cdot  A} = \frac{A \Delta l I_p}{\Delta t \cdot A} = \frac{A \cdot \Delta t \cdot c \cdot I_p}{\Delta t \cdot A} = \frac{1}{2} \varepsilon E_0^2
+\end{gather*}
+ahol $p_{imp}$ az impulzus, $p$ pedig a nyomás.
+Ebből mind az jön ki tilajdonképpen akkor, hogy $\sqrt{\varepsilon_r} = n$. Na de itt van egy probléma: Nézzük a víz esetén mondjuk:  \\
+\begin{center}
+\begin{tabular}{c|c}
+$n_{viz}$ & $\sqrt{\varepsilon_{viz}}$ \\
+1.33 & $ \sqrt{81}$
+\end{tabular}
+\end{center}
+Na most, $1.33 \neq 9$, szóval valami nem okés. Feloldása abban rejlik, hogy a relatív permeabilitás nem frekvenciafüggetlen a legtöbb (összes) anyagban, hanem változhat, nem elhanyagolható mértékben is. A látható fény frekvenciája a terahertzes tartomány, a $\sqrt{81}$ ésrték amit kaptunk pedig a nulla közeli frekvenciákra érvényes. $\varepsilon(\omega \approx 0) \approx 9$, de $\varepsilon(\omega \sim \texttt{THz}) \approx 1.33$. 
+\subsection{Elektromágneses spektrum}
+\subsubsection{Extrém kis frekvencia}
+\textbf{f:0-30kHz, $\lambda>$10km}
+
+Ezt lefgőképpen geofizikai mérésekre alkalmazzák
+\subsubsection{Rádióhullámok}
+Természetesen mindegyiket a rádiótechnológiában használják \\ \\
+\textbf{Hosszú ($\lambda$ 10km-1km)}  
+
+Nagy területet be tud futni de sok energiát igényel \\  \\
+\textbf{Közép ($\lambda$ 1km-100m)}
+
+KIsebb területet tud besugározni, de a célnak megfelelő mennyiségű lefedettség, lefele irányítva a föld görvülete miatt kicsit nagyobb a hatótávolsága, mint amúgy lenne. Rádióadó-tornyok egy része ilyen módon működik.  \\ \\
+\textbf{Rövid ($\lambda$ 100m-10m)}
+
+Hatótávolsága alapból nem túl nagy de egy másik effektus képbe jön: az ionoszféra vissza tudja verni a hullámokat tehát ha az égbe irányítjuk a tornoyt, be tudja sugározni az egész földet tulajdonképpen. Ez a telekommunikációban (távközlésben) hazsnálatos. \\ \\
+\textbf{Ultrarövid $\lambda$ 10m-0.3m}
+
+Hatótávolsága és áthatolási képessége méggyengébb, csak direkt rálátással működik, és már az ionoszférás módszer sem működik 
+
+\subsubsection{Mikrohullámok}
+\textbf{$\lambda$ 0.3m-0.1mm}
+
+Használják a radarhoz, kellemesen átmegy mondjuk vizen. Mikorhullámú sütőhöz, ami melegíteni tud, mert rezegteti a vízmolekulákat az ételben. A mobiltelefon kommunikációs hullámhossza is a mikrohullámú tartományba esik, 
+\begin{itemize}
+\item 1.8 GHz - 2G 
+\item 2.1 GHz - 3G 
+\item 2.6 GHz - 4G
+\end{itemize}
+
+\subsubsection{Infravörös (IR)}
+\textbf{$\lambda$ 1mm-1$\mu$m}
+
+Inframelegítés, hőkamera ezzel a hullámmal működik, hőmérő is. Továbbá van infravörös spektrográfia is. 
+\subsubsection{Látható fény}
+\textbf{$\lambda$ 700nm - 400nm}
+
+vörös-kék az irány. Körülbelül a 100 THz-es tartomány a frekvenciája. 
+\subsubsection{Ultrailbolya (UV)}
+\textbf{$\lambda$ 100nm-1nm}
+
+Ide tartozik az összes ionizáló sugárzás, röntgen, gamma egyéb sugárzások, nagy energiájú és nagy áthatolásképes. 
+\subsection{Rádió működése}
+A rádió tuéajdonképpen nem más mint egy rezgőkör.
+Az adatot elektromágneses hullámmal lehet digitálisan küldeni, azaz ha van jel akkor nem nulla az amplitúdó, ha nincs jel akkor null az amplitúdó, és lehet analog módon, amit a rádió is használ és ennek két fajtája van. 
+Amplitúdó és frekvenciamoduláció
+
+Az amplitúdó modulált jelnél a jel frekvenciája állandó, de a hanghullám görbéjével van burkolva az elektromágneses hullám. 
+
+A frekvenciamodulációnál az amplitúdó állandó és a frekvencia nő és csökken a hanghullám amplitúdójával arányosan. 
+\newpage
+\section{Elektromágneses hullámok II (közegek)}
+\subsection{Változó permeabilitással}
+Csináljunk polarizációval az eredeti hullámmegoldásunnkból egy másik hullámmegoldást (közeghatáron átmenő hullámok)
+\begin{gather*}
+\vec{E}\cos(kz- \omega t ) \Rightarrow \vec{D}_0 \cos(kz-\omega t) = \varepsilon_0 \vec{E}_0 \cos(kz-\omega t) \\
+\vec{E} = \vec{E}_0 e^{i(\omega t -\vec{k} \vec{r})} \\
+\vec{H} = \vec{H}_0 e^{i(\omega t- \vec{k} \vec{r})} \\
+\mathrm{div} \vec{E} = 0 \Leftrightarrow \vec{k} \vec{E}_0 = 0
+\end{gather*}
+Azaz, akkor, ha transzverzális hullámról beszélünk.
+\begin{gather*}
+\nabla \vec{H} = 0	\Leftrightarrow \vec{k} \vec{H} = 0\\
+\nabla \times \vec{E} = -\mu \frac{\partial \vec{H}}{\partial t} \\
+-i(\vec{k} \times \vec{E}_0)e^{i(\omega t -\vec{k}\vec{r})} = -\mu_0(i\omega e^{i(\omega t - \vec{k} \vec{r})}) H_0 \\
+-\vec{k} \times \vec{E}_0 = -\mu H_0 \omega
+\end{gather*}
+Következő kikötésünk
+\begin{gather*}
+\nabla \times \vec{H} = \varepsilon(\omega) \frac{\partial \vec{H}}{\partial t} \\
+-i(\vec{k} \times \vec{H}_0) = \varepsilon(\omega) i \omega \vec{E}_0 \Rightarrow -\vec{k} \times \vec{H}_0 = \varepsilon(\omega) \omega \vec{E}_0 \\
+-\vec{k} \times (\vec{k} \times \vec{H}_0) = -\omega \mu_0 \vec{k} \times \vec{E}_0 \\
+\vec{k} (\vec{k}\vec{E}_0) - (\vec{k}\vec{k}) \vec{E} = -\mu_0 \omega \varepsilon_0(\omega) (\vec{k} \times \vec{H}_0) \\
+k^2 \vec{E}_0 = \mu_0 \omega^2 \varepsilon(\omega) \vec{E}_0 \\
+\frac{k^2}{\mu \omega^2} = \varepsilon(\omega)  \Rightarrow \omega = \frac{1}{\sqrt{\mu \varepsilon}}k
+\end{gather*}
+Ekkor a fázissebesség könnyen kifejezhető:
+\begin{align*}
+c_{fazis} = \frac{\omega}{k} = \frac{1}{\sqrt{\mu \varepsilon(\omega)}} \approx \frac{1}{\sqrt{\mu_0 \varepsilon_0 \varepsilon(\omega)}} = \frac{c_0}{\sqrt{\varepsilon_r(\omega)}} = \frac{c_0}{n(\omega)}
+\end{align*}
+A csoportsebesség már kicsit bonyolultabb:
+\begin{gather*}
+\frac{d\omega}{dk} = c_0\left( \frac{1}{n(\omega)} + \frac{\partial}{\partial k} \left( \frac{1}{n(\omega)}\right)k \right) \\
+\frac{dn}{dk}=c_0 \left[ \frac{1}{n(\omega)} - \frac{1}{n^2(\omega)} \frac{dn}{d\omega} \frac{d\omega}{dk}k \right] \Rightarrow  \frac{d\omega}{dk} \left(  1+ \frac{kc_0}{n^2(\omega)} \frac{dn}{d\omega} \right) = \frac{c_0}{n(\omega)} \\
+c_{csoport} = \frac{c_0}{( 1+ \frac{kc_0}{n^2(\omega)} \frac{dn}{d\omega} )n(\omega)} = \frac{c_0}{n(\omega) + \omega \frac{dn}{d\omega}}
+\end{gather*}
+Menjünk tovább a maxwell-egyenletek fejtegetésével, még a fázist kell tárgyalni:
+\begin{gather*}
+\vec{D} \cos(\omega t - \varphi) = \varepsilon(\omega) E_0 \cos(\omega t) \\
+\end{gather*}
+Ebből két lehetőségünk van, nemnulla és nulla fáziseltolódás
+\begin{gather*}
+\varepsilon(\omega) E_0 \cos(\omega t) = D_0 \cos(\omega t) \\
+\varepsilon(\omega) E_0 \cos(\omega t) = D_0 \cos(\omega t - \varphi(\omega)) 
+\end{gather*}
+A második esetben komplex törésmutatót kapunk:
+\begin{gather*}
+\varepsilon E_0 e^{i\omega t} = D_0 e^{i\omega t} e^{-i\varphi(\omega)} \\
+\varepsilon(\omega) e^{i\varphi(\omega)} \vec{E}_0 = \vec{D}_0 \\
+\tilde{n} = n_0 + i\kappa \hspace{50pt} k = \frac{\omega}{c_0} \tilde{n} = \frac{\omega}{c_0} (n_0 + i\kappa) \\
+\vec{E}(z,t) = \vec{E}_0 e^{\omega t - kz} = \vec{E}_0 e^{i\omega t} e^{-i\frac{\omega}{c_0} (-i\kappa) z} \\
+\vec{E}(z,t) = \vec{E}_0 \cos(\omega t - \frac{\omega}{c_0}n_0 z) e^{-\frac{\omega}{c_0}\kappa z} \\
+I(z) = I_0 e^{-\frac{2\omega}{c_0} z}
+\end{gather*}
+Ez pedig diszcipációt eredményez, ez a Lambert-Beer törvény.
+\subsection{Hullámegyenlet}
+Le lehet vezetni a hullámegyenletet a MAxwell-törvényekből matematikailag. Ezt fogom most megetenni.
+\begin{gather*}
+\nabla \times \vec{E} = -\mu \frac{\partial \vec{H}}{\partial t} \hspace{50pt} / \nabla \times () \\
+\nabla \times \vec{H} = \varepsilon \frac{\partial \vec{E}}{\partial t}
+\end{gather*}
+Az elsőből:
+\begin{gather*}
+\nabla \times \nabla \times \vec{E} = \mu \frac{\partial}{\partial t} (\nabla \times \vec{H})
+\end{gather*}
+Ezt átrendezve és a másodikba behelyettesítve:
+\begin{gather*}
+\nabla \times \nabla \times \vec{E} = -\mu  \frac{\partial^2}{\partial t^2} \vec{E} \varepsilon
+\end{gather*}
+Azt kihasználva, hogy $\mu \varepsilon = \frac{1}{c^2}$ és, hogy a $\nabla ^2 = \nabla(\nabla \cdot) - \nabla \times \nabla \times$ :
+\begin{gather*}
+\boxed{
+\nabla^2 \vec{E} - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \vec{E} = 0}
+\end{gather*}
+A megoldásai pedig ennek az egyenletnek elsősorban, ha a skaláris alakját vesszük, azaz:
+\begin{gather*}
+\nabla^2 \Phi - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \Phi = 0
+\end{gather*}
+Ekkor a lehetséges megoldások szimplán az olyan függvények, amik eleget tesznek a $f(z \pm ct) \pm g(z \mp ct)$ függvényalaknak. Ez a vektoriális esetben is így van, csak itt az extra megkötés, hogy transzverzális hullámokról kell beszélnünk, tehát a mágneses és elektromos térerősségvektorok egymásra merőlegesek is.
+
+Ha három dimenzióban szeretnénk ugyanezt megtenni, akkor gömbszimmetrikus megoldást csak skalármezőnél tudunk produkálni. Vegyünk olyan skalárfüggvényt, ami nem függ $\theta$ és $\varphi$ polár és azimuthszügektől:
+\begin{gather*}
+\nabla^2 \Phi(r, t) = \frac{1}{r} \left( \frac{\partial ^2}{\partial r^2} (r\Phi)\right)\\
+\frac{1}{r} \left( \frac{\partial^2}{\partial r^2} (r\Phi) \right) = \frac{1}{c^2} \frac{\partial^2 \Phi}{\partial t^2} \\
+\frac{\partial^2}{\partial r^2} (r\Phi) = \frac{\partial^2(r\Phi)}{\partial t^2} \\
+r\Phi = f(r \pm ct) \\
+\Phi(r,t) = \frac{1}{r} f(r-ct)
+\end{gather*}
+Ezt nem lehet megcsinálni vektoriális megoldásnál, mert nincs teljesen gömbszimmetrikus megoldás. Van ami közel jön hozzá: egy irányá ban alternáló dipólus sugárzása pontosan ilyen lesz, kis eltérésekkel. 
+\subsection{Skin-effektus} 
+Mi történik, ha fém határára érkezik az elektromágneses hullám? Az előbbi módszerekkel a Faraday-törvénynek vesszük a rotációját ($\nabla \times (\nabla \times \vec{E})$) majd a negyedik törvénybe behelyettsítjük és szabjuk meg, hogy az eltolásvektor állandó időben ($\nabla \times (\nabla \times \vec {E}) = -\mu \frac{\partial}{\partial t} \vec{j}$), továbbá a differenciális Ohm-törvény behelyettesítésével ($\vec{j} = \sigma \vec{E}$) és a vektoriális laplace-operátor kifejtési tételéből megkapjuk az alábbi összefüggést:
+\begin{gather*}
+\nabla^2 \vec{E} = \mu_0 \sigma \partial_t \vec{E}
+\end{gather*} 
+Amely egy x változóban máspdrendű, t változóban elsőrendű kétváltozós parciális differenciálegyenlet. Legyen a  megoldása $\vec{E} = \vec{E}_0 e^{i\omega t + \lambda x}$, amiből:
+\begin{gather*}
+\lambda^2 \vec{E} = \mu_0 \sigma i \omega \vec{E}
+\end{gather*}
+Azaz $\lambda = \pm \sqrt{i\omega \mu_0 \sigma} = \pm\frac{1+i}{\sqrt{2}}\sqrt{\omega \mu_0 \sigma}$. Tehát a megoldás (a mínusz előjelet választva, mert csak annak van fizikai relevanciája) :
+\begin{gather*}
+\vec{E} = \vec{E}_0 e^{i \left( \omega t - \sqrt{\frac{\mu_0 \sigma \omega}{2}} x  \right)} e^{-\sqrt{\frac{\mu_0 \sigma \omega}{2}} x}
+\end{gather*}
+Ahol az első tag a hullámmegoldás, a második tag meg egy csillapítás. Ez a skin effektus. van ennek egy karakterisztikus távolsága $d=\sqrt{\frac{2}{\mu \sigma \omega}}$. 
+\subsection{Fénytörés}
+\subsubsection{Snellius-Descartes törvény}
+A közeghatáron való átmenetnél a hullámok frekvenciája állandó kell, hogy maradjon továbbá a fény terjedési sebessége közeghatáronváltozik. Ahhoz,hogy ez teljesüljön és a közeghatárra vonatkozó feltételek is teljesüljenek, a hullámhelyek maximuma egybe kell, hogy essen. ez pedig csak akkor lehetséges, ha a hullámhossz és a terjedési irány is változik. a két alapfeltétel:
+\begin{gather*}
+[E_1]_t = [E_2]_t \hspace{50pt} [B_1]_p = [B_2]_p \Rightarrow f_1 = f_2
+\end{gather*}
+Így már kifejezhető a második hullámhossz::
+\begin{gather*}
+\lambda_2 = \frac{c}{n_2 f_2} = \frac{c}{n_2 f_1}
+\end{gather*}
+És mivel tudjuk, hogy a határon a hullámmaximumok közötti távolság minkét esetben megegyezik (ami pedig a beesési szög szinuszával kifejezhető):
+\begin{gather*}
+\frac{c}{n_1f_1\sin(\alpha_1)} = \frac{c}{n_2f_2\sin(\alpha_2)} \\
+n_1 \sin(\alpha_1) = n_2 \sin(\alpha_2)
+\end{gather*}
+Ez pedig a Snellius-Descartes törvény. 
+\subsubsection{Fresnel-formulák}
+Akkor beszélünk fresnel-formulákról, ha van visszaverődés (refrakció) és közeghatáron való áthatolás (transzmisszió) is.
+
+
+Két módust különböztetünk meg: 
+\begin{itemize}
+\item TE módus, ha az elektromos térerősségvektor párhuzamos a törőfelülettel (tehát a szokásos oldalnézetből a papír síkjára merőleges)
+\item TM módus, ha a mágneses indukcióvektor párhuzamos a törőfelülettel (tehát a szokásos oldalnézetből az elektomos térerősségvektor a papír síkjával párhuzamos, a törőfelülettel pedig a beesési szöget zárja be.) 
+\end{itemize}
+
+
+TE módus esetén ha a három elektromostérerősség-vektort elnevezzük $E_0, E_r$ és $E_t$- nwek, mint beérkező, refraktált és transzmisszált vektorok, és ugyanígy a mágneses térerősségekre, akkor ha felírjuk a határfeltételeket:
+\begin{gather*}
+[E_1]_t = [E_2]_t \Rightarrow E_0 + E_r = E_t \\
+[H_1]_t = [H_2]_t \Rightarrow H_0 \cos(\alpha_1) - H_r \cos(\alpha_1) = H_t \cos(\alpha_2) \\
+H=\sqrt{\frac{\varepsilon}{\mu}}E = n\sqrt{\frac{\varepsilon_0}{\mu_0}}E \\
+n_1 E_0 \cos(\alpha_1) - n_1 E_r \cos(\alpha_1) = n_2 E_t \cos(\alpha_2)
+\end{gather*}
+Elnevezhetjük $E_r/E_0 = r$ mennyiséget reflexív amplitúdőnak és $E_t/E_1 = t$ transzmissziós amplitúdónak, így az előző összefüggés:
+\begin{gather*}
+n_1 \cos(\alpha_1) - n_2 r \cos(\alpha_2) = n_1(1+r)\cos(\alpha_1) \\
+r= \frac{n_1 \cos(\alpha_1) - n_2 \cos(\alpha_2)}{n_1 \cos(\alpha_1) + n_2 \cos(\alpha_2)} \\ \texttt{Snellius-Descartes-törvénnyel pedig} \\
+r=\frac{\sin(\alpha_2 - \alpha_1)}{\sin(\alpha_2 + \alpha_1)}  \\
+t=1+r = \frac{2\cos(\alpha_1)\sin(\alpha_2)}{\sin(\alpha_1 + \alpha_2)}
+\end{gather*}
+Már csak az intenzitást kell valahogyan kitalálnunk. Ha $I_0$ a bejövő intenzitás:
+\begin{gather*}
+A\rightarrow rA \\
+I\rightarrow |r|^2 I_0
+\end{gather*}
+Így fog változni a reflexív amplitúdó függvényében az intenzitás. Legyen $|r|^2 = R$ Továbi fontos állítások:
+\begin{gather*}
+I_r = RI_0 \hspace{50pt} |r|^2 = \frac{\sin^2(\alpha_2-\alpha_1)}{\sin^2(\alpha_2+\alpha_1)} \\
+I_t = (1-R)I_0 \hspace{30pt} \texttt{viszont} \hspace{30pt} 1-R \neq |t|^2
+\end{gather*}
+Több lehetőséget különböztetünk meg:
+\begin{itemize}
+\item a) $\alpha_1 = \frac{\pi}{2}$ és $n_1> n_2$, ekkor $r=\frac{-\sin(\alpha_1-\pi/2)}{\sin(\alpha_1+\pi_2)} = 1$
+\item b) $\alpha_1 = \alpha_2$ , ekkor $r=0$ és $t=1$
+\item c) $\alpha_1 = \alpha_2 = 0$, ekkor, mivel $\cos(0)=1$ $r = \frac{n_1-n_2}{n_1+n_2}$, $t=\frac{2n_1}{n_1+n_2}$ és $R=|r|^2 = \frac{(n_1-n_2)^2}{(n_1+n_2)^2}$
+\end{itemize}
+ez mind feltételezve, hogy $n_1>n_2$, na de mi van akkor, ha fordítva van:
+\begin{center}
+\begin{tabular}{|c|c|c|}
+$n_2>n_1$ & $r<0$ & van $\pi$ fázisugrás \\
+$n_2<n_1$ & $r>0$ & nincs fázisugyrás
+\end{tabular}
+\end{center}
+
+TM módus esetén hasonló az eljárás:
+\begin{gather*}
+\frac{E_r}{E_0}=r =\frac{-\tan(\alpha_2-\alpha_1)}{\tan(\alpha_1 + \alpha_2)}
+\frac{E_t}{E_0}=t=\frac{2\cos(\alpha_1)\sin(\alpha_2)}{\sin(\alpha_1 + \alpha_2)\cos(\alpha_1-\alpha_2)}
+\end{gather*}
+Megint több lehetőséget különböztetünk meg:
+\begin{itemize}
+\item a) $\alpha_1=\alpha_2$, ilyenkor r=0 és t=1
+\item b) $\alpha_1 = \frac{\pi}{2}$, ilyenkor $r=\frac{\cot(\alpha)}{\cos(-\alpha)} = -1$
+\item c) ugyanaz, mint a TE módusnál
+\item d) $\alpha_1 + \alpha_ = \frac{\pi}{2}$, ekkor r=0 lesz, ezt nevezik Brewster-szügnek. Van egy bizonyos szög amin túl az ily módon polarizált fény nem verődik vissza. 
+\end{itemize}
+\subsection{Kettőstörés}
+A kettőstörő anyag olyan, aminek a permittivitása nem számként, hanem mátrixként modellezhető:
+\begin{gather*}
+\vec{D} = \varepsilon_0 \hat{\varepsilon_r} \vec{E}
+\end{gather*}
+Ahol a mátrix Gram-Schmidt ortogonalizáció után mindig kifejezhető:
+\begin{gather*}
+\begin{pmatrix}
+\varepsilon_1 & 0 & 0 \\
+0 & \varepsilon_2 & 0 \\
+0 & 0 & \varepsilon_3
+\end{pmatrix}
+\end{gather*}
+Ezt nevezik kéttengelyű kettőstörőnek, mert három különböző permittivitása van a három irányban, tehát a törőfelületre merőleges irányon kívül még két tengelytől is függ. 
+\begin{gather*}
+\begin{pmatrix}
+\varepsilon_1 & 0 & 0 \\
+0 & \varepsilon_2 & 0 \\
+0 & 0 & \varepsilon_2
+\end{pmatrix}
+\end{gather*}
+Ez pedig az egytengelyű kettőstörő, aminek kettő független komponense van csak.
+\begin{gather*}
+c_z^{pol,x} = \frac{c_0}{\sqrt{\varepsilon_1}} \hspace{50pt} c_x^{pol,y} = \frac{c_0}{\sqrt{\varepsilon_2}} \hspace{50pt} c_y^{pol,x} = \frac{c_0}{\sqrt{\varepsilon_1}} \\
+c_z^{pol,y} = \frac{c_0}{\sqrt{\varepsilon_2}} \hspace{50pt} c_x^{pol,z} = \frac{c_0}{\sqrt{\varepsilon_2}} \hspace{50pt} c_y^{pol,z} = \frac{c_0}{\sqrt{\varepsilon_1}}
+\end{gather*}
+Így viselkednek az egyes komponensek, ha egy iylen anyagba belép egy elektromágneses hullám, amit az alábbi ábra első rajza szemléltet. \\
+Természetesen nem lehet a teljes "fázisterét" a folyamatnak szemléltetni, mert a három hullámszám és a terjedési irány függvénye kicsit sok dimenziós lenne, de ennek a szemléltetésére szolgálnak a gyönyörű elliőszisek. Az elsőnél azt látjuk, hogy izotrop esetben a terjedési irány mindig megegyezik a megtört iránnyal (a hullámszámok függvénye egy körön helyezkedik el). A másodikban egy geytengelyű kettőstörőt ábrázoltunk, ahol lehet látni, hogy két ellipszist alkot a két permittiviáshoz tartozó hullámszámhármas. A törés iránya mindenhol az ellipszis normálisa, és itt látható, hogy iránytól függően különböző mértékben térül el a fény. Ezt pedig a treapéz alakú prizma szemlélteti legalul.
+\\
+\begin{center}\includegraphics[scale=0.15]{kettostoro} \end{center}
+\newpage
+\section{Fizikai optika}
+\subsection{Polarizáció}
+\subsubsection{Lineárisan poláros}
+Lineárisan polarizált (poláros) az elektromágneses hullám, ha a három hullámszámból az egyik nem nulla a többi nulla, tehtát a térerővonalak egy irányba állnak mindenhol. Előállítása lehet brewster-szöggel, mert a visszaverődő módus mindig TE lesz. Vagy olyan árnyékoló (törőlappal) aiben rések vannak. A résre merőleges hullámokat engedi át a polárszűrő, mert ebben az irányban az útjában levő fém nem elég vastag,hogy elkezdje rezegteti a töltéseket a fémben, nem keletketnek köráramok, viszont ha párhuzamos a réssel és a fogakkal, akkor képes rezegtetni, elnyelődik. Egy bizonyos fokban tartott polrászűrő és főleg a polárszűrők szuperpozícióját már nem lehet megmagyarázni, csak a kvantummechanikával (Bell-paradoxon, rejtett válétozó stb...)
+\subsubsection{Cirkulárisan poláros}
+\begin{gather*}
+E_0 = \begin{pmatrix}
+E_{0x} \sin(\omega t -kz) \\
+E_{0y} \cos(\omega t - kz) \\
+0
+\end{pmatrix}
+\end{gather*}
+Továbbá ebből látszik:
+\begin{gather*}
+E_{0x}^2 + E_{0y}^2 = E_0^2
+\end{gather*}
+Azaz a térerősségvektor körbe-körbe forog az időben. Előállítása pedig egy kettőstörő anyag segítségével történik, ugyanis $\sin(x) = \cos(x-\frac{\pi}{2})$, tehát ha az egyik komponenst fázisát el tudjuk tolni egy negyed periódussal, akkor megkapjuk a körkörös polarizációt. 
+\begin{gather*}
+\Delta \varphi_x = k^{pol,x} \cdot d\\
+\Delta \varphi_y = k^{pol,y} \cdot d \\
+\Delta \varphi_x- \Delta \varphi_y = \frac{\pi}{2}
+\end{gather*}
+\subsection{Faraday-effektus}
+Vegyünk egy valamilyen l hosszúságú henger alakú anyagot, amelyben a test szimmetriatengelyével párhuzamos $\vec{B}$ mágneses teret építünk fel. Ekkor egy adott irányba polarizált hullám polarizációja elfordul valamilyen $\beta$ szöggel az elem másik végéből kiérve. Amire érvényes:
+\begin{gather*}
+\beta = \nu |B| l
+\end{gather*}
+Ahol $\nu$ az ún. Verdet-konstans, ami egy empirikus, anyagra jellemző konstans.
+\subsection{Interferencia és diffrakció}
+Adjunk össze két hullámot mint két vektor (azonos frekvenciájú), majd fejezzük ki a komplex formalizmussal is:
+\begin{gather*}
+A_1 \cos(\omega t + \varphi_1) + A_2 \cos(\omega t + \varphi_2) = \tilde{A} \cos(\omega t + \tilde{\varphi}) \\
+A_1 e^{i\varphi_1} + A_2 e^{i\varphi_2} = \tilde{A} e^{i\tilde{\varphi}} \\
+\end{gather*}
+Ebből kifejezhető az intenzitás, ami az amplitúdó abszolutérték-négyzete:
+\begin{gather*}
+\tilde{I} = |\tilde{A}|^2 = \left( A_1 e^{i\varphi_1} + A_2 e^{i\varphi_2} \right) \left( A_1 e^{-i\varphi_1} + A_2 e^{-i\varphi_2} \right) = \\
+A_1^2 + A_2^2 + A_1A_2  \left(e^{i(\varphi_1-\varphi_2)} + e^{i\varphi_2- \varphi_1}\right) =  I_1 + I_2 + 2\sqrt{I_1I_2}\cos(\varphi_1-\varphi_2)
+\end{gather*}
+
+Ebből pedig a teljes interferencia levezethető ugyanis akkor lesz az intenzitás minimális, ha $\varphi_1-\varphi_2 = \pi \pm k2\pi$ ahol $k \in \mathbb{N}$, ekkor:
+\begin{gather*}
+\tilde{I} = (\sqrt{I_1}-\sqrt{I_2})^2
+\end{gather*}
+És ha $I_1=I_2$, akkor $\tilde{I} = 0$
+
+Ha az intenziást maximalizálni akarjuk,azt úgy érhetjük el, ha $\varphi_1-\varphi_2 = 0 \pm k2\pi$, ekkor:
+\begin{gather*}
+\tilde{I} = (\sqrt{I_1} + \sqrt{I_2})^2
+\end{gather*}
+És ha $I_1=I_2$, akkor $\tilde{I} = 4I$
+\subsubsection{Vékonyréteg-interferencia}
+Ha egy vékony áteresztő és visszaverő rétegen halad át a  fény - itt a vékony, a hullámhosszal összemérhető vastagságot jelent - akkor a transzmittált (és alsó rétegről visszaverődött) és a reflektált hullám fázisában az eltérés lehet számottevő és interferencia következhet be. Ha $d_1$ a reflektált hullám merőleges vetülete a transzmittált hullámra (lásd ábra) és $d_2$ a vastagsága a rétegnek, akkor ( VIGYÁZAT ITT $n$ A TÖRÉSMUTATÓT JELÖLI):
+\begin{gather*}
+\Delta \varphi_1 = kd_1 + \pi \\
+\Delta \varphi_2 = 2nkd_2 \\
+\texttt{és}\\
+\Delta \varphi_1-\Delta \varphi_2 = 2m\pi \\
+\texttt{ahol } m \in \mathbb{Z}
+\end{gather*}
+ami természetesen, ugyan el van rejtve a $d_2$ definíciójában, de függ a beesési szögtől is, mert ez a távolság trigonometriával számolható ki, azaz függni fog a beesési szögtől.
+\subsubsection{Interferométer}
+Olyan eszköz, van egy féligáteresztő tükör és két rendes tükör. Ezek egy kerezt alakban vannak elhelyezve a sugár be és kimenetelét is figyelembe véve. Ezzel azt érik el, hogy a bejövő fénysugarat két irányba szétválasztja a középső tükör, majd a két másik tükörről visszaverődik, de ezek különböző távolságra vannak elhelyezve a középsőtől. Legyen ez a távolság $s_1$ és $s_2$. Ezáltal, ha a távolságok különbgsége összemérhető a hullámhosszal, akkor interferenciát lehet tapasztalni, ha
+\begin{gather*}
+s_2-s_1 = \Delta s \hspace{50pt} k\Delta s = \Delta \varphi
+\end{gather*}
+\subsubsection{Lloyd-tükör}
+Egy tükör és egy arra merőleges ernyőből áll.  Az ernyőn interferenciakép fog megjelenni mert a direkt fénysugár és a visszavert fénysugár különböző utat tesznek meg. Ha az útkülönbség összemérhető a hullámhosszal, akkor interferenciaképet látunk.
+\subsubsection{Huygens-Fresnel-elv}
+A hullámfront minden pontja tekinthető az adott pontból eredő gömbhullám kiindulópontjának. Ezt szemlélteti a résen átengedett fény, ami elhajlik és ami a két résen átmenve interferenciképet mutat. A rés pontjában lehet az akadály egyik oldalán síkhullámként kezelt huhllámot egy gömbhullám kiindulásaként értelmezni, és így az interferencia megmagyarázható. Ha $Theta$ szöggel hajlik el a két résen egy adott fénysugár, akkor a két sugarat felrajzolva, az egyiket a másikra éevetítve megkapjuk a $d$ hosszot, ami a fáziskülönbségük lesz. Vizsgáljuk a szögfüggő intenzitásképet az ernyőn ($a$ pedig a rések távolsága):
+\begin{gather*}
+I(\Theta) = 2I_1 + 2I_2 \cos(\delta \varphi) \\
+\Delta s = a \sin(\Theta) \hspace{50pt} \Delta \varphi = k\Delta s
+\end{gather*}
+\subsubsection{Airy-korong}
+Ugyanez a jelenség figyelhető meg, ha egy síkból egy kis kört vágunk ki. Ez az Airy-korong jelensége, amelyben a metszete az ernyőnek úgy fog kinézni, mint az egy darab rés intenzitásspektruma. A korong lefényesebb pontján túli hullámvölgy elhajlási szöge $\sin(\Theta_{min}) = 1.22 \frac{\lambda}{D}$ avagy kis szögekre $\Theta = 1.22 \frac{\lambda}{D}$, ahol D a kör ármérője.
+\subsubsection{Rayleigh-kritérium}
+A Rayleigh-kritérium mondja meg, hoyg mikor felbontható két, az apertúrán átjövő pont. \\
+Ha $\Delta \Theta < \Theta_{min}$, akkor a két Airy-korong nem felbontható \\
+Ha $\Delta \Theta > \Theta_{min}$, akkor felbontható.
+
+Természetesen ez nem egy fizikai kritérium, ez csupán önkéényes, de azért hasznos kritérium pl csillagászatban.
+\subsubsection{Kristálydiffrakció}
+Nagyon hasonló a vékonyréteg-interferenciához, csak itt egy folytonos réteg helyett részecskékként kezeljük a felületet. Ekkor ha van kettő behatoló fánysugár (párhuzamos),akkor, ha a felső visszaverődik egy részecskéről, az alsó pedig egy réteggel lejjebről, akkor a felület és a fénysugár bezárt szügével kifejezhető, hogy mennyivel tette meg több távolságot az alsó fénysugár (ha d a részecskerétegek távolsága):
+\begin{gather*}
+2d\sin\Theta = n\lambda \hspace{50pt} n \in \mathbb{N}
+\end{gather*}
+Ekkor van erősítés.
+\newpage
+\section{Geometriai optika}
+Posztulátumok: Az elektromágneses síkhullám terjedési irányára merőleges, nyíllal ellátott sugárral jelölik a fényt. Nem fogallkozunk azzal, hogy a fény sebessége véges, végtelennek tekintjük, de már voltak rá mérések. 1675-ben Ole Rømer mérte meg ($\sim 2,3 \cdot 10^{8} m/s$ ), egészen pontosan, majd 1849-bven Hippolyte Fizeau, a fogaskerekes módzsrrel. Továbbá két alapfelvetés $\Theta_{be} = \Theta_{ki}$ visszaverődésnél, ahol theta a felület normálisa és sugár között bezárt szög, és a közeghatáron való áthaladáskor pedig $n_i \sin(\Theta_i) = kons.$, ahol $n_i$ az i-eidk anyag törésmutatója.
+\subsubsection{Snellius-Descartes-törvény II.}
+itt is levezethető a Snellis-Descartes-törvény, ha azt a feladatot akarjuk megoldani, hogy milyen úton menjen a fény, hogy a lehető legkevesebb idő alatt tegye meg az utat A és B pont között, ha van közte egy közeghatáár (azaz más sebességgel halad egyes anyagban). Legyen a közeghatártól mindkét pont H távolságra, legyen a törőfelület a koordinátarendzser x tengelye, a kiinduló pont a (0, -H) ponton helyezhedjen el, a végpont pedig a (l, H) ponton. valahol lépjen át a fénysugár az egyik közegből a másikba , legyen ez a (x,0) pont. Az alsó közegben a terjedési sebesség $c/n_1$, a felsőben $c/n_2$. Ekkor az idő útfüggése:
+\begin{gather*}
+T(x)=\frac{\sqrt{H^2 + x^2}}{c} n_1 + \frac{\sqrt{H^2+(l-x)^2}}{c}n_2 
+\end{gather*}
+A feltétel a minimalizálásra pedig $\partial_x T(x) = 0$, azaz:
+\begin{gather*}
+\frac{x}{\sqrt{H^2+x^2}} \frac{n_1}{c} - \frac{(l-x)}{\sqrt{H^2+ (l-x)^2}}\frac{n_2}{c} = 0
+\end{gather*}
+Az első tag nevezője az beesési $\alpha_1$ szög szinusza, a mésodik tag nevezője pedig $\alpha_2$ szögé. Azaz:
+\begin{gather*}
+n_1 \sin(\alpha_1) = n_2 \sin(\alpha_2)
+\end{gather*}
+Ebből pedig következik a Fermat-elv:
+\subsubsection{Fermat-elv}
+A fény mindig azt az utat teszi meg, amely során az eltelt idő extremum (általában minimum). \\
+Kicsit pontosabban, olyan utat tesz meg a fény amelyben az eltelt idő kis perturbációkra nagyjábol konstans marad (csak másodrendben változik).
+\subsubsection{Síktükör}
+Olyan felület amiről teljesen visszaverődik a fény. A beesési szög és a visszaverődési szög megegyezik, a kép ami keletkezik  nem valódi, nincsen kicsinyítve és nem fordított állású, viszont minden tükör megfordítja a befele és kifele irányát, ezzel tulajdonképpen az univerzum kiralitását fordítja meg. (a balkézből jobbkezet csinál, de a balrából nem csináél jobbrát, se a felből let). 
+\subsubsection{Merőleges tükör}
+Ha két (vagy inkább három, háromdimenzióban) tükröt egymással merőlegesen egy sarok formában elrendezünk, akkor az a beérkező fénysugarakat a beérkezés irányába verik vissza. Így működik a macskaszem a bicikliken, meg autókon.
+\subsubsection{Gömbtükör}
+A gömbtükör olyan tükör, ami egy gömb részlete. Rendelkezik sugárral, geometriai középponttal és vezérsugárral. Ha egy $h_t$ magas tárgyat teszünk egy  távolságra (amelyet tárgytávolságnak nevezünk, $t$-vel jelöljük), akkor visszakapunk egy $h_k$ magasságú képet (ezt pedig $k$-val jelölve, képtávolságnak nevezünk). A távolságokat a törőfelület és vezéregyeneséenek a metszéspontjától mérjük. Ekkor:
+\begin{gather*}
+\frac{h_t}{t} = \frac{h_k}{k} \\
+frac{h_t}{t-R} = \frac{h_k}{R-k}
+\end{gather*}
+A nagyítást az alábbiképpen definiáljuk: $N=-\frac{h_k}{h_t} = -\frac{k}{t}$. Osszuk el a második egyenletet az elsővel:
+\begin{gather*}
+\frac{t-R}{t} = \frac{R-k}{k} \Rightarrow 1-\frac{R}{t} = \frac{R}{k}-1 \\
+\frac{1}{t} + \frac{1}{k} = \frac{2}{R}
+\end{gather*}
+Ezt pedig leképezésii törvénynek hívják. A $2/R$ pedig megegyezik a fókusztávolság reciprokával. Ha t-vel tartunk a végtelenbe, akkor párhuzamos fénysugarakat kapunk, ekkor a képtávolság $R/2$ lesz. Azaz a fókuszpontban találkoznak.
+\begin{center}
+\begin{tabular}{c|c}
+$t>f \Rightarrow k>0$ & valódi, forított állású a kép \\ \hline
+$t<f \Rightarrow k<0$ & virtuális, egyens állású, nagyított a kép
+\end{tabular}
+\end{center}
+Most meg kell beszélni a konvenciókat, mikor van irtuális kép és tárgy és mikor kisebb nagyobb nullánál a Nagyítás.
+\begin{center}
+\begin{tabular}{c|cc}
+& $\boxed{+}$ & $\boxed{-}$ \\ \hline 
+k & valódi kép & virtuális kép \\
+$N,h_k$ & egyenes állású & fordított állású \\
+f & homorú & domború
+\end{tabular}
+\end{center}
+\subsection{Törőfelületek}
+\subsubsection{Gömbtörők}
+Ha a gömbtörő felülettől t távolságra van a tárgy, a kép pedig k távolságra. A felületre tangensének normálisával $\Theta_1$ szöget zár be a fénysuggár. $n_1$ a kép oldali törésmutató $n_2$ pedig a másik oldali. $\Theta_2$ a törés másik irányba vett normálissal bezárt szög. Két további szög $\alpha$ ami a beérkező sugár és optikai tengellyel bezárt szög és $\beta$ a töréspont normálisa és a tengely között bezárt szög, $\gamma$ pedig a másik sugár és tengely bezárt szöge. Használjunk paraaxiális közelítést, azaz minden szög legyen kicsi. Így a S-D törény $n_1 \Theta_1 = n_2 \Theta_2$, továbbá $\Theta_1 = \alpha+\beta$ és $\beta = \Theta_2 + \gamma$. S-D tv:
+\begin{gather*}
+n_1(\alpha+ \beta) = n_2 (\beta-\gamma) \\
+\tan(\alpha) \approx \alpha = \frac{H}{t} \hspace{50pt} \tan(\beta) \approx \beta = \frac{H}{R} \hspace{50pt} \tan(\gamma) \approx \gamma = \frac{H}{k} \\
+n_1 H \left( \frac{1}{t} + \frac{1}{R} \right) = n_2 H \left( \frac{1}{R} - \frac{1}{k}\right) \\
+\frac{n_1}{t} + \frac{n_2}{k} = \frac{n_2-n_1}{R}
+\end{gather*}
+Ez pedig a gömbtörő leképezési törvénye. Találjuk ki a nagyítást: most legyenek a theták a tengellyel bezárt szögek, továbbá $h_t$ és $h_k$ a tárgy és képméret
+\begin{gather*}
+N=-\frac{h_k}{h_t} = -\frac{k \tan(\Theta_2)}{t \tan(\Theta_1)} \approx -\frac{k\Theta_2}{t \Theta_1} = -\frac{k}{t} \frac{n_1}{n_2} = N
+\end{gather*}
+KOnvenciók:
+\begin{center}
+\begin{tabular}{c|cc}
+& $\boxed{+}$ & $\boxed{-}$ \\ \hline 
+R & balról konkáv $\boxed{(}$ & jobbról kokáv $\boxed{)}$\\
+$N$ & egyenes állású & fordított állású \\
+k & valódi & virtuális \\
+t & valódi & virtuális
+\end{tabular}
+\end{center}
+Vízfelszín törése:
+\begin{gather*}
+\frac{n_{viz}}{t} + \frac{1}{k} = 0 \Rightarrow k= -\frac{t}{n_{viz}}
+\end{gather*}
+KÖzelebb hpzza az objektumot, virtuális a kép.
+
+Nevezetes sugármenetek
+\subsubsection{Vékonylencse}
+Olyan lencsénél, ami kellően vékony, a lencse felületétől mérhetjük a távolságokat. Tehát ha kettő gömbtörőt ellentétes irányítású sugárral egymásra rekunk, kapunk egy domború lencsét. Ennek van valami $n$ törésmutatója és két sugara $R_1$ és $R_2$, valamint $k$ és $t$ távolságok, a lencse felületétől számítva. ekkor igaz ($k_1,t_1$-gyel jelölve a respektív kép és tárgytávolságokat), hogy:
+\begin{gather*}
+\frac{1}{t} + \frac{n}{k_1} = \frac{n-1}{R_1} \\
+\frac{1}{t_2} + \frac{1}{k} = \frac{1-n}{R_2} 
+\end{gather*}
+És itt jön a vékony lencsének a kellemes tulajdonsága, az első lencse által képzett tárgy távolsága megegyezik a második képtávolságával, mert mindegy, hogy a lencsétől, vagy a lencsét elválasztó egyenestől számítjuk a lencsék távolságait. $t_2 = -k_1$ és így átrendezve az egészet:
+\begin{gather*}
+\frac{1}{f} = (n-1)\left( \frac{1}{R_1} + \frac{1}{R_2} \right)
+\end{gather*}
+\subsubsection{Vastaglencse}
+Vastaglencsénél ez a könnyebbítés nem áll fenn, a kát egyenletünk:
+\begin{gather*}
+\frac{1}{x_t} + \frac{n}{k_1} = \frac{n-1}{R_1} \\
+\frac{n}{t_1} + \frac{1}{x_k} = \frac{1-n}{R_2} 
+\end{gather*}
+Ebből pedig kijön a leképezési törény ha eltoljuk a távolságokat egy bizonyos mértékben. Mert az visuzont igaz, hogy $t_1= -k_1+d$
+\subsection{Leképezési hibák}
+\subsubsection{Szférikus aberráció}
+ha az egy pontból jövő sugarakat nem egy pontba képezi le a lenycse akkor elmosott foltot kapunk, ez a szférikus aberráió, ha izotróp az elmosódás mértéke a síkon.
+\subsubsection{Kromatikus aberráció}
+Ha a törésmutató frekvenciafüggő, akkor következhet be.
+\subsection{Optikai eszközök}
+\subsubsection{Lupé}
+ez a nagyít. Van egy minimum fókusztávolsága a szemnek, ezt a nagyítót ennél váloabb kell tartani a szemünktől és akkor nagyított egyenes állású képet kapunk és még fókuszálni is tudunk. Miért kell mégis minél közelebb tartani? Mert ha $\theta_1 = \frac{h}{x_{kp}}$, ebből $\Theta = \frac{hN}{k+d} = \frac{hk}{t(k+d)}$ és a leképezési törvényből $f=\frac{kt}{k-t}$, azaz $\frac{k}{t} = \frac{k+f}{f}$. A nagyítást kifejezve: $N_{Theta} = \frac{k+f}{k+d} \frac{x}{f}$. Tehát nagyobbnak kell lennie a távolságnak mint x, de a lehető legkisebbnek, hogy a nagyítás maximális legyen. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
